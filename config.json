@@ -45,6 +45,7 @@
     "Firefox ESR"
   ],
   "settings": {
+    "progress_bar_3": "img/progress_bar_3.png",
     "hide_breadcrumbs": false,
     "hide_page_heading": false,
     "hide_category_page_heading": false,
