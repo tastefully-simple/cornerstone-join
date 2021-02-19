@@ -1,0 +1,223 @@
+.confirmation {
+    a {
+      color: $COLOR_SECONDARY_200;
+    }
+    .confirmation__congrats-header {
+      margin-bottom: $SPACING_4;
+      text-align: center;
+
+      .heading--1 {
+        margin-top: 0;
+        font-weight: bold;
+      }
+
+      svg {
+        max-width: 100px;
+      }
+    }
+
+  .confirmation__congrats-lead-wrapper {
+    padding-bottom: $SPACING_2;
+    width: 100%;
+    background-color: $COLOR_GRAY_150;
+  }
+
+  .confirmation__congrats-lead-block {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: $SPACING_6 0;
+    border-bottom: 1px solid $COLOR_GRAY_200;
+
+    @include breakpoint($BREAKPOINT_MEDIUM) {
+      align-items: flex-start;
+    }
+  }
+
+  .confirmation__congrats-lead-image {
+    width: 100%;
+    text-align: center;
+
+    @include breakpoint($BREAKPOINT_MEDIUM) {
+      width: 45%;
+    }
+  }
+
+  .confirmation__congrats-lead-content {
+    width: 100%;
+    padding-left: $SPACING_4;
+    padding-right: $SPACING_4;
+    padding-top: $SPACING_4;
+
+    @include breakpoint($BREAKPOINT_MEDIUM) {
+      width: 55%;
+      padding-top: 0;
+    }
+
+    h4 {
+      margin-top: 0;
+      font-family: $FONT_FAMILY_SECONDARY;
+      font-weight: bold;
+    }
+  }
+
+  .confirmation__steps-lead {
+    margin-top: $SPACING_6;
+    margin-bottom: $SPACING_6;
+  }
+  .confirmation__steps-lead-text-wrapper {
+    width: 80%;
+    margin: 0 auto;
+
+    .heading--2 {
+      text-align: center;
+      font-weight: bold;
+      color: $COLOR_PRIMARY_100;
+    }
+  }
+
+  .confirmation__step-banner {
+    color: white;
+    display: flex;
+    padding: $SPACING_3;
+
+    .heading--2 {
+      color: $COLOR_WHITE;
+      font-weight: bold;
+    }
+    &.step--red {
+       background-color: $COLOR_SECONDARY_200;
+     }
+
+    &.step--lime {
+      background-color: $COLOR_SECONDARY_100;
+    }
+
+    &.step--teal {
+      background-color: $COLOR_PRIMARY_100;
+    }
+
+    .confirmation__step-banner-text-wrapper {
+      display: flex;
+      align-items: center;
+    }
+    .step-number {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 60px;
+      height: 60px;
+      border: 2px solid $COLOR_WHITE;
+      border-radius: 100%;
+
+      .heading--1 {
+        margin: 0;
+        color: $COLOR_WHITE;
+        font-size: 40px;
+        font-weight: bold;
+      }
+    }
+
+    .heading--2 {
+      margin: 0;
+      margin-left: $SPACING_4;
+    }
+  }
+
+  .confirmation__step-banner-container {
+    padding: 0;
+  }
+
+  .confirmation__steps-text {
+    padding-top: $SPACING_4;
+    padding-bottom: $SPACING_4;
+
+    @include breakpoint($BREAKPOINT_MEDIUM) {
+      padding-bottom: $SPACING_6;
+    }
+
+    p {
+      margin-bottom: $SPACING_2;
+    }
+
+    .steps-social {
+      display: flex;
+    }
+
+    .social-icon-wrapper {
+      display: inline-block;
+      margin-left: $SPACING_4;
+    }
+  }
+
+  .trademark {
+    font-size: 12px;
+  }
+
+  .confirmation__congrats-contact {
+    width: 80%;
+    border-top: 1px solid $COLOR_GRAY_200;
+    padding-top: $SPACING_2;
+
+    .contact-lead {
+      text-align: center;
+      margin-bottom: $SPACING_6;
+    }
+
+    .heading--1 {
+      color: $COLOR_BLACK;
+    }
+
+    .contact-details-wrapper {
+      margin: 0 auto;
+
+      .bold {
+        font-weight: bold;
+      }
+
+      .center {
+        text-align: center;
+      }
+    }
+
+    .contact-phone, .contact-email, .contact-chat{
+      display: flex;
+      align-items: center;
+      margin-bottom: $SPACING_4;
+
+      .contact-icon-wrapper {
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        @include breakpoint($BREAKPOINT_SMALL) {
+          width: 40%;
+        }
+
+        svg {
+          margin-right: $SPACING_3;
+          width: 36px;
+          height: 36px;
+        }
+      }
+
+      .contact-text {
+        width: 80%;
+
+        @include breakpoint($BREAKPOINT_SMALL) {
+          width: 60%;
+        }
+
+        p {
+          margin-bottom: 0;
+        }
+      }
+
+      .phone-number {
+        font-weight: bold;
+        color: $COLOR_PRIMARY_100;
+      }
+    }
+  }
+}

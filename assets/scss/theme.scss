@@ -86,6 +86,19 @@
 
 @import "vendor/jstree/style";
 
+// Irish Titan's SCSS Files
+// -----------------------------------------------------------------------------
+@import "custom/theme/_colors";
+@import "custom/theme/_spacing";
+@import "custom/theme/_typography";
+@import "custom/base/_breakpoints";
+@import "custom/base/_mixins";
+@import "custom/base/_pagination";
+@import "custom/layout/_switch";
+@import "custom/layout/_modal-overlay";
+@import "custom/layout/_join";
+@import "custom/layout/_join-confirmation";
+
 // Razoyo's Tastefully Simple SCSS Files
 // -----------------------------------------------------------------------------
 @import "_tasteful-theme";

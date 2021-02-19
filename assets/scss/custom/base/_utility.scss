@@ -1,0 +1,63 @@
+.isVisuallyHidden--all {
+    @include visuallyHidden();
+}
+
+// Visually-hidden at base breakpoint, then visible at small and higher breakpoints.
+.isVisuallyHidden--base {
+    @include visuallyHidden();
+
+    @include breakpoint($BREAKPOINT_SMALL - 1) {
+        @include visuallyShown();
+    }
+}
+
+// Visually-hidden at small breakpoint, then visible at medium and higher breakpoints.
+.isVisuallyHidden--small {
+    @include breakpoint($BREAKPOINT_SMALL) {
+        @include visuallyHidden();
+    }
+
+    @include breakpoint($BREAKPOINT_MEDIUM - 1) {
+        @include visuallyShown();
+    }
+}
+
+// Visually-hidden at medium breakpoint, then visible at large and higher breakpoints.
+.isVisuallyHidden--medium {
+    @include breakpoint($BREAKPOINT_MEDIUM) {
+        @include visuallyHidden();
+    }
+
+    @include breakpoint($BREAKPOINT_LARGE - 1) {
+        @include visuallyShown();
+    }
+}
+
+// Visually-hidden at large breakpoint, then visible at xlarge and higher breakpoints.
+.isVisuallyHidden--large {
+    @include breakpoint($BREAKPOINT_LARGE) {
+        @include visuallyHidden();
+    }
+
+    @include breakpoint($BREAKPOINT_XLARGE - 1) {
+        @include visuallyShown();
+    }
+}
+
+// Visually-hidden at xlarge breakpoint and beyond!
+.isVisuallyHidden--xlarge {
+    @include breakpoint($BREAKPOINT_XLARGE) {
+        @include visuallyHidden();
+    }
+
+    @include breakpoint($BREAKPOINT_MAX - 1) {
+        @include visuallyShown();
+    }
+}
+
+// Visually-hidden at xlarge breakpoint and beyond!
+.isVisuallyHidden--max {
+    @include breakpoint($BREAKPOINT_MAX) {
+        @include visuallyHidden();
+    }
+}
