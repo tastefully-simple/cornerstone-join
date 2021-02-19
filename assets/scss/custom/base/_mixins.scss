@@ -1,0 +1,264 @@
+/**
+*
+* HEADINGS
+* Mixins for headings so we can modify in one place for heading css class and WYSIWYG content.
+*/
+@mixin heading() {
+    line-height: 1.2;
+}
+
+@mixin heading1() {
+    @include heading();
+    font-size: $FONT_SIZE_XLARGE;
+    color: $COLOR_PRIMARY_100;
+    font-weight: $FONT_WEIGHT_NORMAL;
+	font-family: $FONT_FAMILY_SECONDARY;
+}
+
+@mixin heading2() {
+    @include heading();
+	font-size: $FONT_SIZE_LARGE;
+	font-weight: $FONT_WEIGHT_BOLD;
+	color: $COLOR_BLACK;
+	font-family: $FONT_FAMILY_SECONDARY;
+
+	@include breakpoint($BREAKPOINT_MEDIUM) {
+		font-size: 28px;
+	}
+}
+
+@mixin heading3() {
+    @include heading();
+    font-size: $FONT_SIZE_LARGE;
+	font-family: $FONT_FAMILY_SECONDARY;
+    color: $COLOR_PRIMARY_100;
+}
+
+@mixin heading4() {
+    @include heading();
+    font-size: $FONT_SIZE_MEDIUM;
+	font-weight: $FONT_WEIGHT_BOLD;
+	font-family: $FONT_FAMILY_SECONDARY;
+	color: $COLOR_BLACK;
+	margin-top: $SPACING_2;
+}
+
+@mixin heading5() {
+    @include heading();
+	font-size: $FONT_SIZE_SMALL;
+	color: $COLOR_BLACK;
+}
+
+@mixin heading6() {
+    @include heading();
+	font-size: $FONT_SIZE_SMALL;
+	color: $COLOR_BLACK;
+	text-transform: uppercase;
+	font-weight: $FONT_WEIGHT_BOLD;
+}
+
+/**
+* VISUALLY HIDDEN
+* Hide it! But keep it screenreader accessible!
+*/
+@mixin visuallyHidden() {
+    height: 1px; width: 1px;
+    position: absolute;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+/**
+* VISUALLY SHOWN
+* Undo visually hidden with default values. May need to specify different values in your implementation.
+*/
+@mixin visuallyShown() {
+	width: auto;
+	height: auto;
+    position: static;
+    overflow: visible;
+    clip: auto;
+}
+
+/**
+* BREAKPOINT
+* min-width based media query
+* To use, simply @include inside your rule and provide either a breakpoint variable OR numeric value (with 'px').
+*/
+@mixin breakpoint($size) {
+    @media (min-width: $size) { @content; }
+}
+
+/**
+* HORIZONTAL RHYTHM
+* Include it in your properties with a spacing variable or pixel value and watch your dreams soar!
+*/
+@mixin horizontalRhythm($spacing: 0) {
+    > * {
+      display: inline-block;
+    }
+
+    > * + * {
+      margin-left: $spacing;
+    }
+  }
+
+/**
+* VERTICAL RHYTHM
+* Include it in your properties with a spacing variable or pixel value and watch your dreams soar!
+*/
+@mixin verticalRhythm($spacing: 0) {
+	> * {
+		display: block;
+	}
+
+	> * + * {
+		margin-top: $spacing;
+	}
+}
+
+/**
+* PILLOW
+* A system for consistent container padding throughout breakpoints.
+*
+* @param $vertical boolean
+* @param $horizontal boolean
+*/
+@mixin pillow($vertical: true, $horizontal: true) {
+
+	@if $vertical == false and $horizontal == false {
+		padding: 0;
+
+		@include breakpoint($BREAKPOINT_MEDIUM) {
+			padding: 0;
+		}
+	}
+
+	@if $vertical and $horizontal {
+		padding: $SPACING_2;
+
+		@include breakpoint($BREAKPOINT_MEDIUM) {
+			padding: $SPACING_3;
+		}
+	}
+
+	@if $vertical and $horizontal == false {
+		padding: $SPACING_2 0;
+
+		@include breakpoint($BREAKPOINT_MEDIUM) {
+			padding: $SPACING_3 0;
+		}
+	}
+
+	@if $vertical == false and $horizontal {
+		padding: 0 $SPACING_2;
+
+		@include breakpoint($BREAKPOINT_MEDIUM) {
+			padding: 0 $SPACING_3;
+		}
+	}
+}
+
+/**
+* CONTAINER
+* Sets a max-width and assumes horizontal centering.
+*/
+@mixin container() {
+	margin-left: auto;
+    margin-right: auto;
+    max-width: $BREAKPOINT_LARGE;
+}
+
+/**
+* PADDING BOTTOM
+* Helper to make svgs act responsively. See usage in 'content/responsiveIcon'.
+*/
+@mixin paddingBottom($width: 1, $height: 1) {
+	padding-bottom: ($height / $width) * 100%;
+}
+
+/**
+ * CLEARFIX
+ */
+@mixin clearfix() {
+    &:after {
+        content: "";
+		display: table;
+		clear: both;
+    }
+}
+
+/**
+ * FORM STYLING
+ */
+@mixin formInput() {
+	width: 100%;
+	height: $SPACING_5;
+	margin-bottom: $SPACING_2;
+	border-radius: 5px;
+	border: 1px solid $COLOR_GRAY_200;
+	box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+	padding-left: $SPACING_2;
+
+	&:focus {
+		outline: 0;
+	}
+
+	&.empty {
+		color: $COLOR_GRAY_50;
+	}
+
+	&::placeholder {
+		color: $COLOR_GRAY_50;
+	}
+	&.short {
+		width: 65%;
+	}
+}
+@mixin formLabel () {
+	display: block;
+	width: 100%;
+	margin-bottom: .25rem;
+	margin-left: .25rem;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+@mixin checkbox () {
+	width: 14px;
+	height: 14px;
+	margin-left: $SPACING_2;
+}
+
+@mixin checkboxLabel () {
+	font-size: 16px;
+	font-weight: normal;	
+	display: inline-block;
+}
+
+@mixin checkmark () {
+	display:inline-block;
+
+	&:after {
+		content: '';
+		display: block;
+		width: 8px;
+		height: 14px;
+		border: solid $COLOR_PRIMARY_100;
+		border-width: 0 2px 2px 0;
+		transform: rotate(45deg);
+	}
+}
+
+@mixin disabledField() {
+	label {
+		color: $COLOR_GRAY_50;
+	}
+
+	input[type=text], select, input[type=tel], input[type=date], input[type=email], input[type=password] {
+		border: 0;
+		box-shadow: none;
+		background-color: $COLOR_GRAY_25;
+
+	}
+}

@@ -1,0 +1,152 @@
+// =============================================================================
+// Tastefully Simple Common Styles
+// =============================================================================
+
+.body {
+    margin-top:7rem;
+}
+.page {
+    margin:auto;
+}
+.confetti{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+// Social Links
+.addthis_toolbox {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $teal;
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    .socialLinks-title {
+        left: 19px;
+        padding: 0px 2px;
+        position: absolute;
+        top: -18px;
+        .socialLinks-titleText {
+            background-color: $color-white;
+            font-family:stencilFontFamily("headings-font");
+        }
+    }
+    .socialLinks {
+        display: flex;
+        justify-content: flex-start;
+        align-content: center;
+        .socialLinks-item {
+            margin-bottom: 2px;
+            margin-top: 2px;
+            width: 20px;
+            &:first-child {
+                margin-left: .75rem;
+            }
+            &:last-child {
+                margin-right: 0px;
+            }
+            .at-icon-wrapper {
+                display:none;
+            }
+            a {
+                &[class^="icon-social-"] {
+                    // !important required due to specificity of addthis in the event their classes change
+                    width:25px !important;
+                }
+            }
+        }
+    }
+    .socialLinks-copy {
+        margin: 2px .75rem;
+        padding: 4px 10px;
+        font-size: 11px;
+        width: 75px;
+
+        &:focus {
+            background-color: $teal;
+            border-color: $teal;
+        }
+    }
+}
+// Copy to clipboard (show/hide link copied text)
+.link-copied-text {
+    max-width: 200px;
+    text-align: right;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.link-copied-text.copied {
+    opacity: 1;
+}
+
+@media only screen and (min-width:801px){
+    .body {
+        margin-top:2.5rem;
+    }
+    .container{
+        margin:auto;
+        max-width:1920px;
+        padding:1rem;
+    }
+    .slick-next{
+        right:0;
+    }
+    .slick-prev{
+        left:0;
+    }
+}
+
+@media only screen and (min-width:960px){
+    .container{
+        padding:1rem 2rem;
+    }
+}
+
+// Accordion styles (desktop first to avoid unsetting transitions)
+@media only screen and (max-width:800px) {
+    .tst-accordion {
+        .tst-accordion-item {
+            transition:margin 0.4s ease-out;
+            margin-bottom:1rem;
+            &.open { 
+                transition:margin 0.4s ease;
+                &:not(:last-of-type) {
+                    margin-bottom:5rem;
+                }
+                &:last-of-type {
+                    margin-bottom:4rem;
+                }
+                .tst-accordion-title{
+                    &::after{
+                        content:'\f0d8';
+                        font:700 15px 'Font Awesome 5 Free';
+                    }
+                }
+                .tst-accordion-body {
+                    margin: 0px 0px 10px 0px;
+                    transform: scaleY(1);
+                    transform-origin: top;
+                    transition: transform 0.4s ease;
+                }
+            }
+        }
+
+        .tst-accordion-body {
+            height:0px;
+            transition:height 1s ease-out;
+            transform: scaleY(0);
+        }
+
+        .tst-accordion-title {
+            cursor:pointer;
+            &::after {
+                content:'\f0d7';
+                font:700 15px 'Font Awesome 5 Free';
+                padding-left:.5rem;
+            }
+        }
+    }
+}
