@@ -1,0 +1,70 @@
+/*
+ * Join Kit Page | Homepage
+ */
+
+@mixin kit-header {
+    align-items: center;
+    background-color: teal;
+    color: white;
+    display: flex;
+    flex-basis: 100%;
+    min-height: 3rem;
+    padding: 0.3rem;
+}
+
+// Select a kit
+.kit-selector .kit-card {
+    border: 2px solid $shady-lady;
+    border-top: none;
+    cursor: pointer;
+    margin: 0.5rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    width: 400px;
+    &:not(.selected) {
+        .selected-kit-card-header {
+            display: none;
+        }
+    }
+    &.selected {
+        border-color: teal;
+        .selected-kit-card-header {
+            @include kit-header;
+
+            .icon-system-check {
+                color: white;
+                font-size: 2rem;
+                margin-right: 1rem;
+                margin-left: 0.3rem;
+            }
+        }
+    }
+    .kit-card-header {
+        @include kit-header;
+        background-color: $shady-lady;
+        .fa-circle {
+            font-size: 2rem;
+            margin-right: 1rem;
+            margin-left: 0.3rem;
+        }
+    }
+}
+
+
+
+.kit-included-items-modal {
+    display: none; // Initially set modal to display none
+
+    .kit-included-items {
+        background-color: white;
+        margin: 5% auto;
+        width: 55%;
+        padding-bottom: 0.3rem;
+        position: relative;
+
+        .icon-system-x {
+            color: teal;
+            cursor: pointer;
+        }
+    }
+}
