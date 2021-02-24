@@ -1,10 +1,6 @@
 // =============================================================================
-// JOIN (CSS)
+// PERSONAL INFO PAGE
 // =============================================================================
-
-.kit-productView {
-    margin:0 auto;
-}
 
 .join {
     &__error {
@@ -67,6 +63,29 @@
             width: 100%;
             form {
                 margin-top: $SPACING_2;
+            }
+
+            .find-sponsor-heading {
+                display: flex;
+
+                .find-sponsor-info {
+                    position: relative;
+
+                    .icon-system-info {
+                        cursor: pointer;
+                        margin-left: 0.2rem;
+                        margin-top: 2.28571rem;
+                        width: 15px;
+                    }
+
+                    #findSponsorInfo.dropdown-menu {
+                        // Override Foundation's inline style on left and top properties
+                        left: calc(100% - 158px) !important;
+                        max-width: 300px;
+                        top: 70px !important;
+                        width: 300px;
+                    }
+                }
             }
 
             @include breakpoint($BREAKPOINT_MEDIUM) {
@@ -213,34 +232,7 @@
             align-items: center;
         }
     }
-    //Form styling specific to login form
-    &--login {
 
-        .heading--2 {
-            font-weight: bold;
-        }
-
-        h2 {
-            @include heading();
-            color: $COLOR_BLACK;
-            font-size: $FONT_SIZE_LARGE;
-            font-weight: bold;
-            font-family: $FONT_FAMILY_SECONDARY;
-
-            @include breakpoint($BREAKPOINT_MEDIUM) {
-                font-size: 28px;
-            }
-        }
-    }
-
-    &--login form {
-
-        input[type=text], select, input[type=tel], input[type=date], input[type=email], input[type=password] {
-            width: 80%;
-            margin-bottom: $SPACING_5;
-        }
-    }
-    
     //Consultant List Container
     #sponsorSearchData{
         background-color: white;
