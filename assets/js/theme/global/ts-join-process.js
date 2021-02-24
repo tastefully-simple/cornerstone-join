@@ -71,7 +71,6 @@ class TSJoinProcess {
 
         $productIds.forEach($id => {
             const id = $id.dataset.kitProductId;
-
             const $viewKitDetailsBtn = document.querySelector(`#view-kit-details-${id}`);
 
             $viewKitDetailsBtn.addEventListener('click', () => this.viewIncludedItemsModal(id));
@@ -81,7 +80,8 @@ class TSJoinProcess {
 
     viewIncludedItemsModal(id) {
         const $modal = document.querySelector(`#bbok-${id}`);
-i
+        const $body = document.querySelector('body');
+
         /* Place the modal at the very bottom of body to avoid
          * header interrupting the modal's background
          */
@@ -89,9 +89,11 @@ i
 
         $modal.style.display = 'block';
 
-        const $closeBtn = $modal.querySelector('.kit-included-items-close');
-        $closeBtn.addEventListener('click', () => {
-            $modal.style.display = 'none';
+        const $closeBtns = $modal.querySelectorAll('.kit-included-items-close');
+        $closeBtns.forEach($btn => {
+            $btn.addEventListener('click', () => {
+                $modal.style.display = 'none';
+            });
         });
     }
 
