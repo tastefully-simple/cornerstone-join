@@ -12,12 +12,13 @@ class TSJoinProcess {
     }
 
     init() {
-        switch(document.location.pathname) {
+        switch (document.location.pathname) {
             case KIT_PAGE:
                 this.renderKit();
                 break;
             case PERSONAL_INFO_PAGE:
                 this.renderPersonalInfo();
+                break;
             default:
                 break;
         }
@@ -79,9 +80,11 @@ class TSJoinProcess {
 
         const $cards = $('.kit-selector .kit-card');
 
-        $cards.map(function() {
+        $cards.map(function fn() {
             $(this).prepend(defaultHeaderHTML);
             $(this).prepend(highlightedHeaderHTML);
+
+            return this;
         });
     }
 
@@ -93,13 +96,11 @@ class TSJoinProcess {
             const $viewKitDetailsBtn = document.querySelector(`#view-kit-details-${id}`);
 
             $viewKitDetailsBtn.addEventListener('click', () => this.viewIncludedItemsModal(id));
-
         });
     }
 
     viewIncludedItemsModal(id) {
         const $modal = document.querySelector(`#bbok-${id}`);
-        const $body = document.querySelector('body');
 
         /* Place the modal at the very bottom of body to avoid
          * header interrupting the modal's background
@@ -176,7 +177,7 @@ class TSJoinProcess {
                 console.error('utils.api.cart.itemAdd::error', itemAddErr);
             }
 
-            utils.api.cart.getCart({}, (getCartErr, cart) => {
+            utils.api.cart.getCart({}, (getCartErr, _cart) => {
                 if (getCartErr) {
                     console.error('utils.api.cart.getCart::error', getCartErr);
                 }
@@ -305,7 +306,6 @@ class TSJoinProcess {
     getJoinAgreement() {
         this.api.getJoinAgreement()
             .done(data => {
-                console.log("DATA", data);
                 if (data !== null) {
                     document.getElementById('TermsVersion').value = data.Version;
                     $('#terms-conditions').append(`
@@ -327,10 +327,8 @@ class TSJoinProcess {
 
         const $form = $('#frmJoinPersonalInfo');
         const disabled = $form.find(':input:disabled').removeAttr('disabled');
-        const userInfo = $form.serialize();
+        // const userInfo = $form.serialize();
         disabled.attr('disabled', 'disabled');
-
-        console.log("USER INFO", userInfo);
     }
 
     setSubmissionDefaults() {
