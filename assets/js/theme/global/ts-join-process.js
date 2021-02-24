@@ -48,6 +48,8 @@ class TSJoinProcess {
         this.togglePersonalInfoCheckboxes();
         this.formatPersonalInfoInputFields();
         this.renderFindSponsor();
+        this.openJoinAgreementModal();
+        this.closeJoinAgreementModal();
 
         $('#checkout').on('click', (e) => this.goToCheckout(e));
     }
@@ -275,6 +277,45 @@ class TSJoinProcess {
         const $ssn = document.getElementById('SSN');
         $ssn.addEventListener('keydown', (e) => this.enforceFormat(e));
         $ssn.addEventListener('keyup', (e) => this.formatToSSN(e));
+    }
+
+    openJoinAgreementModal() {
+        const $termsModal = this.$personalInfo.querySelector('#terms-modal');
+        const $modalLink = this.$personalInfo.querySelector('#openTermsModal');
+
+        this.getJoinAgreement();
+
+        $modalLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            $termsModal.classList.add('modal-overlay--active');
+        });
+    }
+
+    closeJoinAgreementModal() {
+        const $termsModal = this.$personalInfo.querySelector('#terms-modal');
+        const $closeIcons = this.$personalInfo.querySelectorAll('.terms-close');
+
+        $closeIcons.forEach(($closeIcon) => {
+            $closeIcon.addEventListener('click', () => {
+                $termsModal.classList.remove('modal-overlay--active');
+            });
+        });
+    }
+
+    getJoinAgreement() {
+        this.api.getJoinAgreement()
+            .done(data => {
+                console.log("DATA", data);
+                if (data !== null) {
+                    document.getElementById('TermsVersion').value = data.Version;
+                    $('#terms-conditions').append(`
+                        <div>${data.HtmlMarkup}</div>
+                    `);
+                }
+            })
+            .fail(() => {
+                $('#terms-conditions-backup').removeClass('hidden');
+            });
     }
 
     goToCheckout(e) {
