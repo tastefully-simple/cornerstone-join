@@ -7,7 +7,7 @@
             {{> components/common/responsive-img
             image=image
             class="progress-bar"
-            default_image=theme_settings.progress_bar_2
+            default_image=theme_settings.ts_progress_bar_2
             }}
         </div>
     </div>
@@ -115,7 +115,18 @@
             </form>
         </div>
         <div class="join__content">
-            <h2 class="textgray-text">2. Find Your Sponsor</h2>
+            <div class="find-sponsor-heading">
+                <h2 class="textgray-text">2. Find Your Sponsor</h2>
+                <span class="find-sponsor-info">
+                    <span class="icon-system-info" data-dropdown="findSponsorInfo"></span>
+                    <div id="findSponsorInfo" class="dropdown-menu tooltip-content tooltip-center" data-dropdown-content="">
+                        <div>
+                            <span class="close-tooltip">x</span>
+                            <p class="system-14">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill.</p>
+                        </div>
+                    </div>
+                </span>
+            </div>
             <div class="join__content-container">
                 <p>Your sponsor will be your partner on the way to achieving your business goals. Search by consultant ID, consultant name or zip code.</p>
                 <form id="consultantSearchForm">
