@@ -50,21 +50,55 @@
     }
 }
 
-
-
 .kit-included-items-modal {
+    background-color: rgb(0,0,0); // Fallback color
+    background-color: rgba(0,0,0,0.4); // Black w/ opacity
     display: none; // Initially set modal to display none
+    position: fixed; // Stay in place
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
 
     .kit-included-items {
         background-color: white;
+        border-radius: 0.5rem;
         margin: 5% auto;
-        width: 55%;
-        padding-bottom: 0.3rem;
+        max-width: 1280px;
+        padding: 2rem;
         position: relative;
+        width: 80%;
 
-        .icon-system-x {
-            color: teal;
-            cursor: pointer;
+        .kit-included-items-close {
+            text-align: right;
+
+            span {
+                color: teal;
+                cursor: pointer;
+            }
+        }
+
+        .kit-included-items-close.bottom-close {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+
+            h4 {
+                display: inline;
+                margin-left: 0.5rem;
+            }
+        }
+
+        .kit-title {
+            line-height: 1;
+            margin-bottom: 0;
+        }
+
+        .kit-description {
+            line-height: 1.2;
         }
     }
 }
