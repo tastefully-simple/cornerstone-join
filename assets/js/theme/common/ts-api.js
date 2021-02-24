@@ -1,8 +1,6 @@
 export default class TSApi {
     constructor() {
         this.baseUrl = window.theme_settings.ts_tsapi_base_url;
-
-        console.log("BASE URL", this.baseUrl);
     }
 
     fullUrl(uri) {
