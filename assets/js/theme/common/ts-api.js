@@ -19,4 +19,13 @@ export default class TSApi {
             url: this.fullUrl(uri),
         });
     }
+
+    // Get TS Join Terms and Conditions
+    getJoinAgreement() {
+        return $.ajax({
+            type: 'GET',
+            accepts: 'json',
+            url: this.fullUrl('/join/tc'),
+        });
+    }
 }
