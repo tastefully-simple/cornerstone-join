@@ -1,10 +1,12 @@
 import utils from '@bigcommerce/stencil-utils';
+import { confetti } from 'dom-confetti';
 import TSApi from '../common/ts-api';
 import TSCookie from '../common/ts-cookie';
 import ConsultantCard from '../common/consultant-card';
 
 const KIT_PAGE = '/';
 const PERSONAL_INFO_PAGE = '/tell-us-about-yourself/';
+const CONFIRMATION_PAGE = '/welcome';
 
 class TSJoinProcess {
     constructor() {
@@ -19,6 +21,9 @@ class TSJoinProcess {
                 break;
             case PERSONAL_INFO_PAGE:
                 this.renderPersonalInfo();
+                break;
+            case CONFIRMATION_PAGE:
+                this.renderCheckoutConfirmation();
                 break;
             default:
                 break;
@@ -54,6 +59,12 @@ class TSJoinProcess {
         this.closeJoinAgreementModal();
 
         $('#checkout').on('click', (e) => this.goToCheckout(e));
+    }
+
+    renderCheckoutConfirmation() {
+        this.triggerConfetti();
+        this.showOrderNumber();
+        this.updateSelectedSponsorCard();
     }
 
     /**
@@ -599,6 +610,44 @@ class TSJoinProcess {
     /**
      * END PERSONAL INFO FUNCTIONS
      */
+
+
+    /**
+     * CHECKOUT CONFIRMATION FUNCTIONS
+     */
+
+    triggerConfetti() {
+        const confettiRoots = document.querySelectorAll('[data-fun]');
+        confettiRoots.forEach(confettiRoot => confetti(confettiRoot));
+    }
+
+    showOrderNumber() {
+        // Display order number in the page
+        const orderId = TSCookie.getOrderId();
+        const $orderNumber = document.querySelector('.join-order-number');
+        $orderNumber.innerHTML = `<strong>Your order number is: ${orderId}</strong>`;
+    }
+
+    updateSelectedSponsorCard() {
+        const consultant = JSON.parse(localStorage.getItem('selectedSponsor'));
+        const $card = document.getElementById('selectedSponsorCard');
+        let card = $card.innerHTML;
+
+        card = card.replace(/{consultant-imagesrc}/g, consultant.image ? consultant.image : '');
+        card = card.replace(/{consultant-name}/g, consultant.name ? consultant.name : '');
+        card = card.replace(/{consultant-title}/g, consultant.title ? consultant.title : '');
+        card = card.replace(/{consultant-phone}/g, consultant.phone ? consultant.phone : '');
+        card = card.replace(/{consultant-email}/g, consultant.email ? consultant.email : '');
+        card = card.replace(/{consultant-location}/g, consultant.location ? consultant.location : '');
+        card = card.replace(/{consultant-weburl}/g, consultant.weburl ? consultant.weburl : '');
+
+        $card.innerHTML = card;
+    }
+
+    /**
+     * END CHECKOUT CONFIRMATION FUNCTIONS
+     */
+
 
     /**
      * COMMON FUNCTIONS
