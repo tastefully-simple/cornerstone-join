@@ -1,5 +1,6 @@
 import utils from '@bigcommerce/stencil-utils';
 import TSApi from '../common/ts-api';
+import TSCookie from '../common/ts-cookie';
 import ConsultantCard from '../common/consultant-card';
 
 const KIT_PAGE = '/';
@@ -323,12 +324,43 @@ class TSJoinProcess {
 
         this.setSubmissionDefaults();
         this.clearPersonalInfoErrorMessages();
-        localStorage.setItem('isJoin', true);
 
         const $form = $('#frmJoinPersonalInfo');
         const disabled = $form.find(':input:disabled').removeAttr('disabled');
         // const userInfo = $form.serialize();
         disabled.attr('disabled', 'disabled');
+
+        /* @TODO: move the setting of local storage item, email cookie
+         * and redirecting to /checkout in the API's success status
+         */
+
+        /* Store selected sponsor info in local storage.
+         * This info will be used in the confirmation page.
+         */
+        const selectedSponsor = this.getSelectedSponsorInfo();
+        localStorage.setItem('selectedSponsor', JSON.stringify(selectedSponsor));
+
+        // Store user's email as cookie
+        const $emailInput = document.getElementById('Email');
+        TSCookie.setJoinEmail($emailInput.value);
+
+        window.location.href = '/checkout.php';
+    }
+
+    getSelectedSponsorInfo() {
+        const $consultantCard = $('.consultant-card.selected');
+
+        return {
+            cid: $consultantCard.data('cid') || null,
+            afid: $consultantCard.data('afid') || null,
+            image: $consultantCard.data('image') || null,
+            name: $consultantCard.data('name') || null,
+            title: $consultantCard.data('title') || null,
+            phone: $consultantCard.data('phone') || null,
+            email: $consultantCard.data('email') || null,
+            location: $consultantCard.data('location') || null,
+            weburl: $consultantCard.data('weburl') || null,
+        };
     }
 
     setSubmissionDefaults() {
