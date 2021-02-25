@@ -1,0 +1,18 @@
+<script type="text/javascript">
+    (function(w) {
+        w.TSCookie = {
+            // Order Id
+            getOrderId: function() {
+                return Cookies.get('joinOrderId');
+            },
+
+            // Debugging
+            setTest: function(value) {
+                Cookies.set('_test', value);
+            },
+            getTest: function() {
+                return Cookies.get('_test');
+            }
+        };
+    })(window);
+</script>
