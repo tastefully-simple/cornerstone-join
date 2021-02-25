@@ -351,7 +351,7 @@ class TSJoinProcess {
         const selectedSponsor = this.getSelectedSponsorInfo();
         localStorage.setItem('selectedSponsor', JSON.stringify(selectedSponsor));
 
-        // Store user's email as cookie
+        // Store user's email to cookie
         const $emailInput = document.getElementById('Email');
         TSCookie.setJoinEmail($emailInput.value);
 
