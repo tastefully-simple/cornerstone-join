@@ -52,3 +52,22 @@
         }
     }
 }
+
+.confetti {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.join-order-number {
+    text-align: right;
+    margin-right: 1.5rem;
+}
+
+#selectedSponsorCard {
+    background: white;
+    max-width: 500px;
+    border-top: 50px solid $shady-lady;
+    cursor: default;
+}
