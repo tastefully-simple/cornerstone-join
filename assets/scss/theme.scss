@@ -102,6 +102,9 @@
 // -----------------------------------------------------------------------------
 @import "_tasteful-theme";
 @import "_styleguide";
-@import "custom/layout/_join-kit.scss";
+@import "custom/base/_common";
+@import "custom/layout/_header";
+@import "custom/layout/_footer";
+@import "custom/layout/_join-kit";
 @import "custom/layout/_consultant-card";
 @import "custom/layout/_join-confirmation";

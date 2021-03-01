@@ -1,0 +1,72 @@
+// =============================================================================
+// Tastefully Simple Footer Styles
+// =============================================================================
+
+.footer {
+    padding: 0;
+    // Set all colors to white as the footer uses a generic config value that we cannot re-define
+    .footer-bottom{
+        color: #fff;
+        a,
+        a:hover{
+            color:#fff;
+        }
+        button {
+            padding:0;
+        }
+        .footer-copyright{
+            &>.powered-by{
+                color: #fff;
+            }
+        }
+    }
+    // end color override
+    .footer-bottom {
+        background-color:$text-gray;
+        .container {
+            align-items:center;
+            display:flex;
+            flex-flow:column-reverse;
+            justify-content:space-between;
+            &>div {
+                align-items:center;
+                display:flex;
+                &.copyright-logos {
+                    flex:2 2 50%;
+                    justify-content:space-between;
+                    .footer-copyright {
+                        text-align:left;
+                    }
+                    .footer-logos {
+                        display:flex;
+                        a {
+                            display:block;
+                            padding:0 .5rem;
+                        }
+                    }
+                }
+                &.footer-use-links {
+                    flex:1 1 30%;
+                    justify-content:flex-end;
+                    a {
+                        text-decoration:none;
+                    }
+                    p {
+                        margin-bottom:0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:800px) {
+    .footer{
+        .footer-bottom {
+            background-color:$text-gray;
+            .container {
+                flex-flow:row;
+            }
+        }
+    }
+}
