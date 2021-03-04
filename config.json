@@ -45,6 +45,8 @@
     "Firefox ESR"
   ],
   "settings": {
+    "ts_current_store_base_url": "https://tastefully-simple-inc-sandbox-4.mybigcommerce.com",
+    "ts_join_api_base_url": "https://qa1-join.api.tastefullysimple.com",
     "ts_tsapi_base_url": "https://qa1-tsapi.tastefullysimple.com",
     "ts_progress_bar_2": "img/progress_bar_2.png",
     "ts_progress_bar_3": "img/progress_bar_3.png",
@@ -365,7 +367,7 @@
   },
   "variations": [
     {
-      "name": "Light",
+      "name": "Tech-Sandbox",
       "id": "light",
       "meta": {
         "desktop_screenshot": "desktop_light.png",
