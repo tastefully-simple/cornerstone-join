@@ -1,0 +1,120 @@
+// =============================================================================
+// Tastefully Simple - Consultant Card
+// =============================================================================
+
+@mixin consultant-header {
+    align-items:center;
+    background-color: $teal;
+    color: $white;
+    display: flex;
+    flex-basis: 100%; 
+    padding: 10px 0;
+}
+
+.consultant-divider {
+    width: 100%;
+    border: 1px solid $silver;
+}
+.consultant-card {
+    cursor:pointer;
+    display: flex;
+    justify-content:space-between;
+    padding: 10px 0;
+    width: 100%;
+    flex-wrap: wrap;
+    &:not(.selected) {
+        padding-top:1rem;
+        .selected-header {
+            display: none;
+        }
+    }
+    .consultant-header {
+        @include consultant-header;
+        background-color: $shady-lady;
+        padding: 5px;
+        margin-bottom: 10px;
+        .fa-circle {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+    }
+    &.selected {
+        margin-top:1rem;
+        border:.5rem solid $teal;
+        border-top:none;
+        flex-wrap: wrap;
+        margin: 10px 0px 10px 0;
+        padding-top: 0;
+        position: relative;
+        .selected-header {
+            @include consultant-header;
+            .selection-title {
+                color:$white;
+                margin:0;
+            }
+            .icon-system-check {
+                color:$white;
+                font-size:2rem;
+                margin-right:1rem;
+            }
+        }
+    }
+    .consultant-image {
+        width:30%;
+        img {
+            max-height: 135px;
+        }
+    }
+    .consultant-info {
+        display: flex;
+        flex-basis:65%;
+        flex-direction: column;
+        .system-14 {
+            font-size: 14px;
+        }
+        h5 {
+            margin: 0;
+            font-family: "PT Serif";
+        }
+        .consultant-phone {
+            display: flex;
+            .icon-system-phone {
+                margin-right: 5px;
+            }
+            span {
+                font-size: 14px;
+                vertical-align: middle;
+            }
+        }
+        .consultant-email {
+            display: flex;
+            .icon-system-envelope {
+                margin-right: 5px;
+            }
+            span {
+                font-size: 14px;
+                overflow-wrap: anywhere;
+                vertical-align: middle;
+            }
+        }
+        .ts-page-link {
+            display: flex;
+            a {
+                text-decoration: none;
+                vertical-align: middle;
+            }
+            .icon-system-download {
+                margin: 0 10px;
+            }
+        }
+    }
+}
+
+
+@media only screen and (min-width:361px) {
+    .consultant-card {
+        .consultant-header {
+            padding:10px;
+        }
+    }
+}

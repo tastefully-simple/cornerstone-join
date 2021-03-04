@@ -15,6 +15,9 @@ import adminBar from './global/adminBar';
 import carousel from './common/carousel';
 import loadingProgressBar from './global/loading-progress-bar';
 import svgInjector from './global/svg-injector';
+// TST custom scripts
+import tooltip from './global/tooltip';
+import tsJoinProcess from './global/ts-join-process';
 
 export default class Global extends PageManager {
     onReady() {
@@ -35,5 +38,7 @@ export default class Global extends PageManager {
         }
         loadingProgressBar();
         svgInjector();
+        tooltip();
+        tsJoinProcess();
     }
 }

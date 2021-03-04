@@ -1,0 +1,26 @@
+<script type="text/javascript">
+    (function(w) {
+        w.TSCookie = {
+            // Order Id
+            getOrderId: function() {
+                return Cookies.get('joinOrderId');
+            },
+
+            // Join email
+            setJoinEmail: function(value) {
+                Cookies.set('joinEmail', value);
+            },
+            getJoinEmail: function() {
+                return Cookies.get('joinEmail');
+            },
+
+            // Debugging
+            setTest: function(value) {
+                Cookies.set('_test', value);
+            },
+            getTest: function() {
+                return Cookies.get('_test');
+            }
+        };
+    })(window);
+</script>

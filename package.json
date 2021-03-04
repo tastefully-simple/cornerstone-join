@@ -9,6 +9,7 @@
     "@bigcommerce/stencil-utils": "^6.8.0",
     "core-js": "^3.6.5",
     "creditcards": "^3.0.1",
+    "dom-confetti": "^0.2.2",
     "easyzoom": "^2.5.3",
     "focus-within-polyfill": "^5.1.0",
     "formdata-polyfill": "^3.0.20",

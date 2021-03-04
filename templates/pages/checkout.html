@@ -28,9 +28,14 @@
     </div>
 </header>
 
+{{> components/common/checkout-progressbar }}
+
 {{{ checkout.checkout_content }}}
 
 {{{ footer.scripts }}}
+
+{{!-- TST-342 --}}
+{{> components/common/ts-checkout }}
 
 {{/partial}}
 

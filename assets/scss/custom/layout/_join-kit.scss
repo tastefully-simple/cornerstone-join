@@ -1,0 +1,181 @@
+/*
+ * Join Kit Page | Homepage
+ */
+
+@mixin kit-header {
+    align-items: center;
+    background-color: teal;
+    color: white;
+    display: flex;
+    flex-basis: 100%;
+    min-height: 3rem;
+    padding: 0.3rem;
+}
+
+// Progress bar
+.join-progress-bar {
+    background: teal;
+    margin-top: -5rem;
+    padding-bottom: 3rem;
+    text-align: center;
+    width: 100%;
+
+    .join-progress-labels {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        max-width: 450px;
+        padding-top: 4rem;
+        width: 100%;
+
+        h4 {
+            margin: 0;
+            color: $wan-white;
+        }
+    }
+
+    .progress-bar-img {
+        width: 400px;
+    }
+}
+
+// Kit Selector section
+.kit-selector-container {
+    background-color: white;
+    box-shadow: 0px 3px 10px 2px rgba(0,0,0,0.2);
+    margin: 0 auto;
+    margin-top: -1.5rem;
+    max-width: 980px;
+    padding-bottom: 3rem;
+    width: 100%;
+
+    h1 {
+        margin: 0;
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .kit-selector {
+        margin: 0 auto;
+        max-width: 780px;
+        display: flex;
+        justify-content: center;
+    }
+
+    // Continue button
+    .kit-continue-btn-wrapper {
+        margin: 0 auto;
+        margin-top: 2rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+// Select a kit
+.kit-selector .kit-card {
+    border: 2px solid $shady-lady;
+    border-top: none;
+    cursor: pointer;
+    margin: 0.5rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    width: 100%;
+    &:not(.selected) {
+        .selected-kit-card-header {
+            display: none;
+        }
+    }
+    &.selected {
+        border-color: teal;
+        .selected-kit-card-header {
+            @include kit-header;
+
+            .icon-system-check {
+                color: white;
+                font-size: 2rem;
+                margin-right: 1rem;
+                margin-left: 0.3rem;
+            }
+        }
+    }
+    .kit-card-header {
+        @include kit-header;
+        background-color: $shady-lady;
+        .fa-circle {
+            font-size: 2rem;
+            margin-right: 1rem;
+            margin-left: 0.3rem;
+        }
+    }
+}
+
+.kit-included-items-modal {
+    background-color: rgb(0,0,0); // Fallback color
+    background-color: rgba(0,0,0,0.4); // Black w/ opacity
+    display: none; // Initially set modal to display none
+    position: fixed; // Stay in place
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+
+    .kit-included-items {
+        background-color: white;
+        border-radius: 0.5rem;
+        margin: 5% auto;
+        max-width: 1280px;
+        padding: 2rem;
+        position: relative;
+        width: 80%;
+
+        .kit-included-items-close {
+            text-align: right;
+
+            span {
+                color: teal;
+                cursor: pointer;
+            }
+        }
+
+        .kit-included-items-close.bottom-close {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+
+            h4 {
+                display: inline;
+                margin-left: 0.5rem;
+            }
+        }
+
+        .kit-title {
+            line-height: 1;
+            margin-bottom: 0;
+        }
+
+        .kit-description {
+            line-height: 1.2;
+        }
+    }
+}
+
+// Kit's Included item card
+.kit-included-item-card {
+    display: flex;
+    padding: 1rem 0;
+
+    img {
+        max-width: 99px;
+    }
+
+    .kit-included-item-info {
+        margin-left: 1rem;
+
+        h2, p {
+            margin: 0;
+        }
+    }
+}

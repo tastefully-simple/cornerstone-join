@@ -1,0 +1,45 @@
+{{!-- TST-342 --}}
+<script type="text/javascript">
+    // TSCookie is not accessible in the checkout page
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    class TSCheckout {
+        constructor(app) {
+            this.observeApp(app);
+        }
+
+        observeApp(app) {
+            this.observer = new MutationObserver(this.mutationCallback);
+
+            if (app) {
+                this.observer.observe(app, {
+                    attributes: true,
+                    subtree: true
+                });
+            } else {
+                this.observer.disconnect();
+            }
+        }
+
+        mutationCallback(mutations) {
+            mutations.forEach(mutation => {
+                const $email = document.querySelector('#email');
+
+                if ($email) {
+                    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
+                    const email = getCookie('joinEmail');
+                    nativeInputValueSetter.call($email, email);
+                    const inputEvent = new Event('input', { bubbles: true });
+                    $email.dispatchEvent(inputEvent);
+                }
+            });
+        }
+    }
+
+    const $checkoutApp = document.getElementById('checkout-app');
+    const customCheckout = new TSCheckout($checkoutApp);
+</script>

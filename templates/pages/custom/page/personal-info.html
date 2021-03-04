@@ -1,0 +1,263 @@
+{{#partial "page"}}
+
+<main class="page join join--personal-info" id="personal-info">
+    <div class="join__banner">
+        <div class="join__banner-title-wrapper">
+            <h1 class="white-text">{{page.title}}</h1>
+            {{> components/common/responsive-img
+            image=image
+            class="progress-bar"
+            default_image=theme_settings.ts_progress_bar_2
+            }}
+        </div>
+    </div>
+    <div class="join__container">
+        <div class="join__form">
+            <h2 class="textgray-text">1. Enter Personal Information</h2>
+            <form id="frmJoinPersonalInfo" style="" runat="server" method="post" action="#">
+                <input type="hidden" id="CartId" name="CartId" value="">
+                <input type="hidden" id="ConsultantId" name="ConsultantId" value="">
+                <div id="prefixField" class="simple-dropdown">
+                    <label for="Prefix">Prefix</label>
+                    <select type="select" id="Prefix" name="Prefix" value="" class="empty">
+                        <option value=""> Select </option>
+                        <option value="Mr"> Mr. </option>
+                        <option value="Ms"> Ms </option>
+                        <option value="Mrs"> Mrs. </option>
+                    </select>
+                </div>
+                <div id="preferredNameField" class="">
+                    <label for="preferredName" class="input-label">
+                        <span>Preferred First Name</span>
+                        <input type="text" id="PreferredName" name="PreferredName" value="" placeholder="Preferred name">
+                    </label>
+                </div>
+                <div id="firstNameField">
+                    <label for="FirstName" class="input-label">
+                        <span>Legal First Name</span>
+                        <input type="text" id="FirstName" name="FirstName" value="" placeholder="First name">
+                    </label>
+                </div>
+                <div id="lastNameField">
+                    <label for="LastName" class="input-label">
+                        <span>Last Name</span>
+                        <input type="text" id="LastName" name="LastName" value="" placeholder="Last name">
+                    </label>
+                </div>
+                <div id="emailAddressField">
+                    <label for="Email" class="input-label">
+                        <span>Email Address</span>
+                        <input type="email" id="Email" name="Email" value="" placeholder="Email Address">
+                    </label>
+                </div>
+                <div id="SSNField" class="">
+                    <label for="SSN" class="input-label">
+                        <span>Social Security Number</span>
+                        <input type="text" id="SSN" name="SSN" value="" placeholder="123-45-6789">
+                        <img src="{{cdn 'assets/img/secure-lock.png'}}">
+                    </label>
+                    <p class="join__field--subtext">For authentication and tax purposes, we need your Social Security Number to get your business started.</p>
+                </div>
+                <div id="DOBField" class="">
+                    <label for="DOB" class="input-label">
+                        <span>Date of Birth</span>
+                        <input type="date" id="BirthDate" name="BirthDate" value="mm-dd-yyyy" placeholder="mm-dd-yyyy" class="empty">
+                        <input type="hidden" id="Birthday" name="Birthday" value="">
+                    </label>
+                </div>
+                <div id="cellPhoneField" class="">
+                    <label for="Phone" class="input-label">
+                        <span>Mobile Phone Number</span>
+                        <input type="tel" id="Phone" name="Phone" value="">
+                    </label>
+                </div>
+                <div id="mobilePhoneCheckboxField" class="" style="margin-bottom:16px;">
+                    <input type="checkbox" id="PhoneIsMobile" name="PhoneIsMobile" value="true" checked>
+                    <label for="PhoneIsMobile" class="join__form--checkbox-label">My mobile number is my primary</label>
+                </div>
+                <div id="primaryPhoneField" class="disabled">
+                    <label for="PrimaryPhone">Primary Phone</label>
+                    <input type="tel" id="PrimaryPhone" name="PrimaryPhone" value="" disabled>
+                </div>
+                <div id="textingCheckboxField" class="" style="margin-bottom:16px;">
+                    <input type="checkbox" id="SmsOptIn" name="SmsOptIn" value="true" checked>
+                    <label for="SmsOptIn" class="join__form--checkbox-label">Text message opt-in</label>
+                </div>
+                <div id="tsCashOption" class="">
+                    <div class="simple-dropdown">
+                        <label for="CashOption">How will you be using your TS Cash?</label>
+                        <select id="CashOption" type="select" name="CashOption" class="empty">
+                            <option value="" selected="selected">Please select</option>
+                            <option value="1">Pay Bills</option>
+                            <option value="2">Fun money (date night, travel, furniture, etc.)</option>
+                            <option value="3">Children activities (sports, dance, tuition, etc.)</option>
+                            <option value="4">Other: </option>
+                        </select>
+                    </div>
+                </div>
+                <div id="tsCashOptionTextField" class="hidden">
+                    <label for="CashOptionText" class="input-label">
+                        <span>TS Cash Option Other</span>
+                        <input type="text" id="CashOptionText" name="CashOptionText" value="">
+                    </label>
+                </div>
+                <div id="termsCheckboxHiddenField" class="hidden">
+                    <input type="checkbox" id="TermsOptIn" name="TermsOptIn" value="true">
+                    <label for="TermsCheckbox" class="join__form--checkbox-label">Terms &amp; Conditions opt-in</label>
+                </div>
+                <div id="termsVersion" class="hidden">
+                    <label for="TermsVersion" class="input-label">
+                        <span>Sponsor</span>
+                        <input type="text" id="TermsVersion" name="TermsVersion" value="">
+                    </label>
+                </div>
+                <div id="sponsorSelectionField" class="hidden">
+                    <label for="SponsorSelection" class="input-label">
+                        <span>Terms  &amp; Conditions Version</span>
+                        <input type="text" id="SponsorSelection" name="SponsorSelection" value="">
+                    </label>
+                </div>
+                <input type="submit" value="Submit" id="submit" class="hidden">
+            </form>
+        </div>
+        <div class="join__content">
+            <div class="find-sponsor-heading">
+                <h2 class="textgray-text">2. Find Your Sponsor</h2>
+                <span class="find-sponsor-info">
+                    <span class="icon-system-info" data-dropdown="findSponsorInfo"></span>
+                    <div id="findSponsorInfo" class="dropdown-menu tooltip-content tooltip-center" data-dropdown-content="">
+                        <div>
+                            <span class="close-tooltip">x</span>
+                            <p class="system-14">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill.</p>
+                        </div>
+                    </div>
+                </span>
+            </div>
+            <div class="join__content-container">
+                <p>Your sponsor will be your partner on the way to achieving your business goals. Search by consultant ID, consultant name or zip code.</p>
+                <form id="consultantSearchForm">
+                    <div>
+                        <h4 class="textgray-text">Search by Consultant ID</h4>
+                        <label for="txtConsultantId" class="input-label">
+                            <span>Consultant ID</span>
+                            <input type="text" id="txtConsultantID" value="" class="short" name="consultantId">
+                        </label>
+                        <button id="btnConsIdSearch" class="button-secondary">search</button>
+                    </div>
+                    <div>
+                        <h4 class="textgray-text">Search by Consultant Name</h4>
+                        <div class="input-dropdown">
+                            <label for="txtConsultantName" class="input-label">
+                                <span>Consultant Name</span>
+                                <input type="text" id="txtConsultantName" class="short" value="" name="consultantName">
+                            </label>
+                            <div class="simple-dropdown">
+                                <label class="input-label"><span>State</span></label>
+                                <select type="select" id="ConsultantState" name="ConsultantState" value="">
+                                    <option value="AL">Select State</option>
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="AA">Armed Forces America</option>
+                                    <option value="AE">Armed Forces Other</option>
+                                    <option value="AP">Armed Forces Pacific</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="DC">District Of Columbia</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="PR">Puerto Rico</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="WV">West Virginia</option>
+                                    <option value="WI">Wisconsin</option>
+                                    <option value="WY">Wyoming</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button id="btnConsNameSearch" class="button-secondary">search</button>
+                    </div>
+                    <div>
+                        <h4 class="textgray-text">Search Near Me</h4>
+                        <label for="txtZipCode" class="input-label">
+                            <span>Zip Code</span>
+                            <input type="text" id="txtZipCode" class="short" placeholder="55608" value="" name="consultantZipCode">
+                        </label>
+                        <button id="btnConsZipSearch" class="button-secondary">search</button>
+                    </div>
+                    <h4 class="teal-text">Select Your Sponsor</h4>
+                    <div class="sponsorSearchData-wrapper">
+                        <h1 class="hidden">Shopping With</h1>
+                        <div id="sponsorSearchData">
+                        </div>
+                        <div id="divTsConsFound" style="display:none; padding-left:5px; padding-right:5px;">
+                            <br />
+                            There is no consultant near you, but not to worry! Select Tastefully Simple as your sponsor and continue. 
+                            We will contact you to find the best sponsor near you.
+                        </div>
+                    </div>
+                    <div class="join__terms">
+                        <h4 class="textgray-text">Independent Consultant Agreement</h4>
+                        <table style="width:100%; margin-bottom: 10px;">
+                            <tr>
+                                <td valign="middle" style="width:5%;"><input type="checkbox" id="TermsCheckboxVisible" name="TermsCheckboxVisible" value=""></td>
+                                <td>
+                                    <label for="TermsCheckboxVisible" style="font-size: 12px;">
+                                        I understand and accept the terms and conditions of the <a id="openTermsModal">Tastefully Simple independent consultant agreement</a>
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>     
+                    </div>
+                    <button id="checkout" value="checkout" class="button-secondary-icon">checkout</button>
+                </form>
+                <br />
+                <div id="formErrorMessages"></div>
+            </div>
+        </div>
+    </div>
+    <div id="affiliatediv" data-affiliateid="{0}" data-fname="" data-lname="" ></div>
+    {{> components/common/join-agreement-modal}}
+</main>
+
+{{/partial}}
+
+{{> layout/base }}

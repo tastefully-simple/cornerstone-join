@@ -1,0 +1,317 @@
+// =============================================================================
+// PERSONAL INFO PAGE
+// =============================================================================
+
+.join {
+    &__error {
+        color: #D0021B;
+    }
+
+    &__banner {
+        display: flex;
+        align-items: top;
+        min-height: 250px;
+        margin-top: -5rem;
+        background-color: $COLOR_PRIMARY_100;
+    }
+
+    &--login .join__banner {
+        align-items: center;
+        min-height: 350px;
+        background: url(../img/join-cheers.jpg) no-repeat top center;
+        background-size: cover;
+    }
+
+    &__banner-title-wrapper {
+        margin: 0 auto;
+        margin-top: $SPACING_3;
+        padding: $SPACING_4;
+        text-align: center;
+
+        .heading--1 {
+            color: $COLOR_WHITE;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            margin-bottom: $SPACING_8;
+            max-width: 250px;
+
+            @include breakpoint($BREAKPOINT_MEDIUM) {
+                max-width: 325px;
+            }
+        }
+    }
+
+    #form-id {
+        @include visuallyHidden();
+    }
+
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: -1 * $SPACING_8;
+        padding: 0;
+        background: $COLOR_WHITE;
+        border-radius: 5px;
+        box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.13);
+
+        .join__form, .join__content {
+            padding: 0 2rem 2rem;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            width: 100%;
+            form {
+                margin-top: $SPACING_2;
+            }
+
+            .find-sponsor-heading {
+                display: flex;
+
+                .find-sponsor-info {
+                    position: relative;
+
+                    .icon-system-info {
+                        cursor: pointer;
+                        margin-left: 0.2rem;
+                        margin-top: 2.28571rem;
+                        width: 15px;
+                    }
+
+                    #findSponsorInfo.dropdown-menu {
+                        // Override Foundation's inline style on left and top properties
+                        left: calc(100% - 158px) !important;
+                        max-width: 300px;
+                        top: 70px !important;
+                        width: 300px;
+                    }
+                }
+            }
+
+            @include breakpoint($BREAKPOINT_MEDIUM) {
+                padding: 0 2rem 2rem;
+                width: 50%;
+            }
+        }
+    }
+
+    &__content {
+        background: $COLOR_GRAY_150;
+    }
+
+    &__heading--teal.heading--4 {
+        color: $COLOR_PRIMARY_100;
+    }
+
+    .hidden {
+        @include visuallyHidden();
+    }
+
+    #learn-more {
+        padding: .75rem 1.75rem;
+        background-color: $COLOR_PRIMARY_100;
+        color: $COLOR_WHITE;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    &__container {
+        @include container();
+    }
+
+    &__search-button {
+        padding: $SPACING_1 $SPACING_2;
+    }
+
+    &__form {
+
+        &--toggle {
+            display: flex;
+            align-items: center;
+
+            p {
+                margin-bottom: 0;
+            }
+
+            .active {
+                border-bottom: 1px solid $COLOR_SECONDARY_100;
+                color: $COLOR_SECONDARY_100;
+                font-weight: bold;
+            }
+        }
+    }
+    //Form styling for join process
+    form {
+        .disabled {
+            @include disabledField();
+        }
+
+        &#consultantSearchForm {
+            .input-label {
+                display:inline-flex;
+                width:65%;
+                input {
+                    margin-bottom:0;
+                    width:100%;
+                }
+            }
+            .input-dropdown {
+                display:flex;
+                justify-content:space-between;
+                .simple-dropdown {
+                    display:inline-flex;
+                    width:30%;
+                }
+            }
+            button {
+                margin-bottom:0;
+                vertical-align:bottom;
+            }
+        }
+
+        input[type=text], input[type=tel], input[type=date], input[type=email], input[type=password] {
+            @include formInput();
+        }
+
+        select {
+            margin-bottom: $SPACING_2;
+        }
+
+        input[type=checkbox] {
+            @include checkbox();
+            position: relative;
+        }
+
+        .join__form--checkbox-label {
+            @include checkboxLabel();
+            width: auto;
+        }
+
+        fieldset {
+            margin: $SPACING_2 0;
+            padding: 0;
+            border: none;
+        }
+
+        #billingZIPField {
+            width: 50%;
+
+            input {
+                margin-bottom: $SPACING_1;
+            }
+        }
+
+        #cellPhoneField {
+            input {
+                margin-bottom: $SPACING_1;
+            }
+        }
+
+        .join__field--subtext {
+            margin-left: $SPACING_1;
+            margin-top: -1 * $SPACING_2;
+            color: $COLOR_GRAY_200;
+            font-size: 13px;
+        }
+
+        #SSNField {
+            position: relative;
+
+            img {
+                position: absolute;
+                right: 5px;
+                top: 28px;
+                max-width: 25px;
+            }
+        }
+
+        #submit {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    //Consultant List Container
+    #sponsorSearchData{
+        background-color: white;
+        max-height: 500px;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 7px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, .5);
+            box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+        }
+
+        .consultant-card {
+            .selected-header {
+                margin-bottom: 10px;
+            }
+            .consultant-image {
+                padding-left: 0.5rem;
+            }
+            .consultant-info {
+                .consultant-name {
+                    color: $COLOR_GRAY_300;
+                }
+            }
+        }
+
+        .consultant-divider {
+            width: 96%;
+            margin: 0 auto;
+        }
+    }
+    #sponsorSearchData.sponsor-result--error {
+        background-color: $COLOR_GRAY_150;
+
+        li a {
+            font-size: $FONT_SIZE_BASE;
+        }
+    }
+
+    //Terms box styling
+    form .join__terms {
+        padding: 0 $SPACING_3 0 $SPACING_3;
+        border: 1px solid $COLOR_GRAY_200;
+        h4 {
+            text-align:center;
+        }
+
+        label {
+            @include checkboxLabel();
+            padding-left: $SPACING_1;
+
+            a {
+                color: $COLOR_SECONDARY_200;
+            }
+        }
+
+        .heading--4 {
+            text-align: center;
+        }
+    }
+    //styling for checkout button
+    #checkout {
+        display: flex;
+        align-items: center;
+        margin-top: $SPACING_2;
+        float: right;
+        padding: .25rem $SPACING_2;
+    }
+
+    @media (max-width: 768px) {
+        &__mobile-100 {
+            width: 100% !important;
+        }
+
+        &__mobile-60 {
+            width: 60% !important;
+        }
+    }
+}
