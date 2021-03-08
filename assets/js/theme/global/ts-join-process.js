@@ -50,6 +50,10 @@ class TSJoinProcess {
     renderPersonalInfo() {
         this.$personalInfo = document.getElementById('personal-info');
 
+        // Input Cart Id from cookie
+        const cartId = TSCookie.getCartId('joinCartId');
+        $('#CartId').val(cartId);
+
         this.removeClassContainer();
         this.changePersonalInfoSelectValueStyling();
         this.togglePersonalInfoCheckboxes();
@@ -189,11 +193,12 @@ class TSJoinProcess {
                 console.error('utils.api.cart.itemAdd::error', itemAddErr);
             }
 
-            utils.api.cart.getCart({}, (getCartErr, _cart) => {
+            utils.api.cart.getCart({}, (getCartErr, cart) => {
                 if (getCartErr) {
                     console.error('utils.api.cart.getCart::error', getCartErr);
                 }
 
+                TSCookie.setCartId(cart.id);
                 window.location.href = PERSONAL_INFO_PAGE;
             });
         });
@@ -233,6 +238,7 @@ class TSJoinProcess {
         this.togglePrimaryPhoneCheckbox();
         this.toggleTextOptInCheckbox();
         this.toggleTsCashOtherCheckbox();
+        this.toggleAgreementCheckbox();
     }
 
     togglePrimaryPhoneCheckbox() {
@@ -274,6 +280,19 @@ class TSJoinProcess {
                 $otherField.classList.remove('hidden');
             } else {
                 $otherField.classList.add('hidden');
+            }
+        });
+    }
+
+    toggleAgreementCheckbox() {
+        const $visibleCheckbox = this.$personalInfo.querySelector('#TermsCheckboxVisible');
+        const $termsConditionsOptIn = this.$personalInfo.querySelector('#TermsOptIn');
+
+        $visibleCheckbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                $termsConditionsOptIn.checked = true;
+            } else {
+                $termsConditionsOptIn.checked = false;
             }
         });
     }
@@ -336,26 +355,52 @@ class TSJoinProcess {
         this.setSubmissionDefaults();
         this.clearPersonalInfoErrorMessages();
 
-        const $form = $('#frmJoinPersonalInfo');
-        const disabled = $form.find(':input:disabled').removeAttr('disabled');
-        // const userInfo = $form.serialize();
-        disabled.attr('disabled', 'disabled');
+        this.api.joinSignUp(this.getUserInfo())
+            .done(() => {
+                /* Store selected sponsor info in local storage.
+                 * This info will be used in the confirmation page.
+                 */
+                const selectedSponsor = this.getSelectedSponsorInfo();
+                localStorage.setItem('selectedSponsor', JSON.stringify(selectedSponsor));
 
-        /* @TODO: move the setting of local storage item, email cookie
-         * and redirecting to /checkout in the API's success status
-         */
+                // Store user's email to cookie
+                const $emailInput = document.getElementById('Email');
+                TSCookie.setJoinEmail($emailInput.value);
 
-        /* Store selected sponsor info in local storage.
-         * This info will be used in the confirmation page.
-         */
-        const selectedSponsor = this.getSelectedSponsorInfo();
-        localStorage.setItem('selectedSponsor', JSON.stringify(selectedSponsor));
+                window.location.href = '/checkout.php';
+            })
+            .fail(error => {
+                this.displayCheckoutErrorMessage(error);
+            });
+    }
 
-        // Store user's email to cookie
-        const $emailInput = document.getElementById('Email');
-        TSCookie.setJoinEmail($emailInput.value);
-
-        window.location.href = '/checkout.php';
+    getUserInfo() {
+        return {
+            nameDetail: {
+                prefix: $('#Prefix').val(),
+                preferredFirstName: $('#PreferredName').val(),
+                legalFirstName: $('#FirstName').val(),
+                lastName: $('#LastName').val(),
+            },
+            ssn: $('#SSN').val(),
+            email: $('#Email').val(),
+            verifyEmail: $('#VerifyEmail').val(),
+            dateOfBirth: $('#BirthDate').val(),
+            phoneDetail: {
+                mobilePhone: $('#Phone').val(),
+                mobileIsPrimary: $('#PhoneIsMobile').is(':checked'),
+                primaryPhone: $('#PrimaryPhone').val(),
+                smsOptIn: $('#SmsOptIn').is(':checked'),
+            },
+            cashOption: Number($('#CashOption').val()),
+            cashOptionText: $('#CashOptionText').val(),
+            consultantId: $('#ConsultantId').val(),
+            agreement: {
+                agreementSelected: $('#TermsOptIn').is(':checked'),
+                version: Number($('#TermsVersion').val()),
+            },
+            cartid: $('#CartId').val(),
+        };
     }
 
     getSelectedSponsorInfo() {
@@ -396,6 +441,53 @@ class TSJoinProcess {
         } else {
             this.$personalInfo.querySelector('#Birthday').value = '';
         }
+    }
+
+    displayCheckoutErrorMessage(error) {
+        if (error.responseJSON.errors) {
+            const errors = error.responseJSON.errors;
+            const checkoutErrors = this.checkoutErrorMessages(errors);
+
+            checkoutErrors.forEach(checkoutError => {
+                if (checkoutError.messages !== undefined) {
+                    checkoutError.messages.forEach(message => {
+                        $('#formErrorMessages').append(`
+                            <li class="join__error">${message}</li>
+                        `);
+                    });
+                }
+                if (checkoutError.id === 'ConsultantId' && $('#sponsorSearchData').children.length > 0) {
+                    document.getElementById('sponsorSearchData').style.border = '1px solid #D0021B';
+                }
+            });
+            $('#formErrorMessages').append(`
+                <h5 class="join__error" >If you continue to experience issues, please contact the 
+                Customer Services team at 866.448.6446.</li>
+            `);
+        } else if (error) {
+            $('#formErrorMessages').append(`
+                <h4 class="join__error">${error.responseJSON}</h4>
+            `);
+        } else {
+            $('#sponsorSearchData').append(`
+                <h4  class="join__error">No results found.</h4>
+            `);
+        }
+    }
+
+    checkoutErrorMessages(errors) {
+        return [
+            { id: 'ConsultantId', messages: errors.ConsultantId },
+            { id: 'DateOfBirth', messages: errors.DateOfBirth },
+            { id: 'Email', messages: errors.Email },
+            { id: 'NameDetail.LastName', messages: errors['NameDetail.LastName'] },
+            { id: 'NameDetail.LegalFirstName', messages: errors['NameDetail.FirstName'] },
+            { id: 'NameDetail.PreferredFirstName', messages: errors['NameDetail.PreferredFirstName'] },
+            { id: 'NameDetail.Prefix', messages: errors['NameDetail.Prefix'] },
+            { id: 'PhoneDetail.MobilePhone', messages: errors['PhoneDetail.MobilePhone'] },
+            { id: 'SSN', messages: errors.SSN },
+            { id: 'VerifyEmail', messages: errors.VerifyEmail },
+        ];
     }
 
     /**
