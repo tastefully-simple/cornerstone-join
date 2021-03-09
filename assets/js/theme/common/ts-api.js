@@ -1,10 +1,15 @@
 export default class TSApi {
     constructor() {
-        this.baseUrl = window.theme_settings.ts_tsapi_base_url;
+        this.tsapiUrl = window.theme_settings.ts_tsapi_base_url;
+        this.joinUrl = window.theme_settings.ts_join_api_base_url;
     }
 
-    fullUrl(uri) {
-        return this.baseUrl + uri;
+    fullTSApiUrl(uri) {
+        return this.tsapiUrl + uri;
+    }
+
+    fullJoinUrl(uri) {
+        return this.joinUrl + uri;
     }
 
     // Get Sponsor
@@ -14,7 +19,7 @@ export default class TSApi {
         return $.ajax({
             type: 'GET',
             accepts: 'json',
-            url: this.fullUrl(uri),
+            url: this.fullTSApiUrl(uri),
         });
     }
 
@@ -23,7 +28,17 @@ export default class TSApi {
         return $.ajax({
             type: 'GET',
             accepts: 'json',
-            url: this.fullUrl('/join/tc'),
+            url: this.fullTSApiUrl('/join/tc'),
+        });
+    }
+
+    joinSignUp(payload) {
+        return $.ajax({
+            type: 'POST',
+            accepts: 'json',
+            contentType: 'application/json',
+            url: this.fullJoinUrl('/join/signup'),
+            data: JSON.stringify(payload),
         });
     }
 }

@@ -6,6 +6,14 @@
                 return Cookies.get('joinOrderId');
             },
 
+            // Cart Id
+            setCartId: function(value) {
+                Cookies.set('joinCartId', value);
+            },
+            getCartId: function() {
+                return Cookies.get('joinCartId');
+            },
+
             // Join email
             setJoinEmail: function(value) {
                 Cookies.set('joinEmail', value);
