@@ -76,10 +76,10 @@
     border: 2px solid $shady-lady;
     border-top: none;
     cursor: pointer;
+    height: 520px;
     margin: 0.5rem;
     padding-bottom: 2rem;
     text-align: center;
-    width: 100%;
     &:not(.selected) {
         .selected-kit-card-header {
             display: none;

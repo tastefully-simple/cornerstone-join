@@ -110,13 +110,16 @@ class TSJoinProcess {
         $productIds.forEach($id => {
             const id = $id.dataset.kitProductId;
             const $viewKitDetailsBtn = document.querySelector(`#view-kit-details-${id}`);
+            const $modal = document.querySelector(`#bbok-${id}`);
 
-            $viewKitDetailsBtn.addEventListener('click', () => this.viewIncludedItemsModal(id));
+            $modal.classList.add('kit-included-items-modal');
+
+            $viewKitDetailsBtn.addEventListener('click', () => this.viewIncludedItemsModal($modal));
         });
     }
 
-    viewIncludedItemsModal(id) {
-        const $modal = document.querySelector(`#bbok-${id}`);
+    viewIncludedItemsModal(modal) {
+        const $modal = modal;
 
         /* Place the modal at the very bottom of body to avoid
          * header interrupting the modal's background
