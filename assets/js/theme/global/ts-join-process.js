@@ -480,15 +480,7 @@ class TSJoinProcess {
 
     checkoutErrorMessages(errors) {
         return [
-            { id: 'ConsultantId', messages: errors.ConsultantId },
-            { id: 'DateOfBirth', messages: errors.DateOfBirth },
-            { id: 'Email', messages: errors.Email },
-            { id: 'NameDetail.LastName', messages: errors['NameDetail.LastName'] },
-            { id: 'NameDetail.LegalFirstName', messages: errors['NameDetail.FirstName'] },
-            { id: 'NameDetail.PreferredFirstName', messages: errors['NameDetail.PreferredFirstName'] },
-            { id: 'NameDetail.Prefix', messages: errors['NameDetail.Prefix'] },
             { id: 'PhoneDetail.MobilePhone', messages: errors['PhoneDetail.MobilePhone'] },
-            { id: 'SSN', messages: errors.SSN },
             { id: 'VerifyEmail', messages: errors.VerifyEmail },
         ];
     }
