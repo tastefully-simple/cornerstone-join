@@ -373,7 +373,7 @@ class TSJoinProcess {
                 window.location.href = '/checkout.php';
             })
             .fail(error => {
-                this.displayCheckoutErrorMessage(error);
+                this.displayCheckoutErrorMessages(error);
             });
     }
 
@@ -446,7 +446,7 @@ class TSJoinProcess {
         }
     }
 
-    displayCheckoutErrorMessage(error) {
+    displayCheckoutErrorMessages(error) {
         if (error.responseJSON.errors) {
             const errors = error.responseJSON.errors;
             const checkoutErrors = this.checkoutErrorMessages(errors);
@@ -480,16 +480,18 @@ class TSJoinProcess {
 
     checkoutErrorMessages(errors) {
         return [
-            { id: 'ConsultantId', messages: errors.ConsultantId },
-            { id: 'DateOfBirth', messages: errors.DateOfBirth },
-            { id: 'Email', messages: errors.Email },
-            { id: 'NameDetail.LastName', messages: errors['NameDetail.LastName'] },
-            { id: 'NameDetail.LegalFirstName', messages: errors['NameDetail.FirstName'] },
-            { id: 'NameDetail.PreferredFirstName', messages: errors['NameDetail.PreferredFirstName'] },
             { id: 'NameDetail.Prefix', messages: errors['NameDetail.Prefix'] },
-            { id: 'PhoneDetail.MobilePhone', messages: errors['PhoneDetail.MobilePhone'] },
-            { id: 'SSN', messages: errors.SSN },
+            { id: 'NameDetail.PreferredFirstName', messages: errors['NameDetail.PreferredFirstName'] },
+            { id: 'NameDetail.LegalFirstName', messages: errors['NameDetail.LegalFirstName'] },
+            { id: 'NameDetail.LastName', messages: errors['NameDetail.LastName'] },
+            { id: 'Email', messages: errors.Email },
             { id: 'VerifyEmail', messages: errors.VerifyEmail },
+            { id: 'SSN', messages: errors.SSN },
+            { id: 'DateOfBirth', messages: errors.DateOfBirth },
+            { id: 'PhoneDetail.MobilePhone', messages: errors['PhoneDetail.MobilePhone'] },
+            { id: 'CashOptionText', messages: errors.CashOptionText },
+            { id: 'ConsultantId', messages: errors.ConsultantId },
+            { id: 'Agreement.AgreementSelected', messages: errors['Agreement.AgreementSelected'] },
         ];
     }
 
