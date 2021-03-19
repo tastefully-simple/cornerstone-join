@@ -373,7 +373,7 @@ class TSJoinProcess {
                 window.location.href = '/checkout.php';
             })
             .fail(error => {
-                this.displayCheckoutErrorMessage(error);
+                this.displayCheckoutErrorMessages(error);
             });
     }
 
@@ -446,7 +446,7 @@ class TSJoinProcess {
         }
     }
 
-    displayCheckoutErrorMessage(error) {
+    displayCheckoutErrorMessages(error) {
         if (error.responseJSON.errors) {
             const errors = error.responseJSON.errors;
             const checkoutErrors = this.checkoutErrorMessages(errors);
@@ -480,16 +480,18 @@ class TSJoinProcess {
 
     checkoutErrorMessages(errors) {
         return [
-            { id: 'ConsultantId', messages: errors.ConsultantId },
-            { id: 'DateOfBirth', messages: errors.DateOfBirth },
-            { id: 'Email', messages: errors.Email },
-            { id: 'NameDetail.LastName', messages: errors['NameDetail.LastName'] },
-            { id: 'NameDetail.LegalFirstName', messages: errors['NameDetail.FirstName'] },
-            { id: 'NameDetail.PreferredFirstName', messages: errors['NameDetail.PreferredFirstName'] },
             { id: 'NameDetail.Prefix', messages: errors['NameDetail.Prefix'] },
-            { id: 'PhoneDetail.MobilePhone', messages: errors['PhoneDetail.MobilePhone'] },
-            { id: 'SSN', messages: errors.SSN },
+            { id: 'NameDetail.PreferredFirstName', messages: errors['NameDetail.PreferredFirstName'] },
+            { id: 'NameDetail.LegalFirstName', messages: errors['NameDetail.LegalFirstName'] },
+            { id: 'NameDetail.LastName', messages: errors['NameDetail.LastName'] },
+            { id: 'Email', messages: errors.Email },
             { id: 'VerifyEmail', messages: errors.VerifyEmail },
+            { id: 'SSN', messages: errors.SSN },
+            { id: 'DateOfBirth', messages: errors.DateOfBirth },
+            { id: 'PhoneDetail.MobilePhone', messages: errors['PhoneDetail.MobilePhone'] },
+            { id: 'CashOptionText', messages: errors.CashOptionText },
+            { id: 'ConsultantId', messages: errors.ConsultantId },
+            { id: 'Agreement.AgreementSelected', messages: errors['Agreement.AgreementSelected'] },
         ];
     }
 
@@ -728,7 +730,13 @@ class TSJoinProcess {
         const $card = document.getElementById('selectedSponsorCard');
         let card = $card.innerHTML;
 
-        card = card.replace(/{consultant-imagesrc}/g, consultant.image ? consultant.image : '');
+        const consultantImage =
+            `<img
+                src=${consultant.image}
+                onerror="this.onerror=null;this.src='https://tso.tastefullysimple.com/_/media/images/noconsultantphoto.png';"
+            />`;
+
+        card = card.replace(/{consultant-image}/g, consultantImage);
         card = card.replace(/{consultant-name}/g, consultant.name ? consultant.name : '');
         card = card.replace(/{consultant-title}/g, consultant.title ? consultant.title : '');
         card = card.replace(/{consultant-phone}/g, consultant.phone ? consultant.phone : '');

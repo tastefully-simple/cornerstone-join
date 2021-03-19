@@ -27,6 +27,7 @@
 
         mutationCallback(mutations) {
             mutations.forEach(mutation => {
+                // Inject customer's email address (from cookie) to Checkout page's email input
                 const $email = document.querySelector('#email');
 
                 if ($email) {
@@ -35,6 +36,26 @@
                     nativeInputValueSetter.call($email, email);
                     const inputEvent = new Event('input', { bubbles: true });
                     $email.dispatchEvent(inputEvent);
+                }
+
+                /*
+                 * Remove the newsletter checkbox and
+                 * "Already have an account? Sign in now"
+                 */
+                const $newsletterInput = document.querySelector('#shouldSubscribe');
+                const $newsletterLabel = document.querySelector('label[for="shouldSubscribe"]');
+                const $signInNow = document.querySelector('#checkout-customer-login');
+
+                if ($newsletterInput) {
+                    $newsletterInput.remove();
+                }
+
+                if ($newsletterLabel) {
+                    $newsletterLabel.remove();
+                }
+
+                if ($signInNow) {
+                    $signInNow.parentElement.remove();
                 }
             });
         }
