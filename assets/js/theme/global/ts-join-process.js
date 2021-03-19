@@ -728,7 +728,13 @@ class TSJoinProcess {
         const $card = document.getElementById('selectedSponsorCard');
         let card = $card.innerHTML;
 
-        card = card.replace(/{consultant-imagesrc}/g, consultant.image ? consultant.image : '');
+        const consultantImage =
+            `<img
+                src=${consultant.image}
+                onerror="this.onerror=null;this.src='https://tso.tastefullysimple.com/_/media/images/noconsultantphoto.png';"
+            />`;
+
+        card = card.replace(/{consultant-image}/g, consultantImage);
         card = card.replace(/{consultant-name}/g, consultant.name ? consultant.name : '');
         card = card.replace(/{consultant-title}/g, consultant.title ? consultant.title : '');
         card = card.replace(/{consultant-phone}/g, consultant.phone ? consultant.phone : '');
