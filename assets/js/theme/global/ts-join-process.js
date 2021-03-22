@@ -8,6 +8,9 @@ const KIT_PAGE = '/';
 const PERSONAL_INFO_PAGE = '/tell-us-about-yourself/';
 const CONFIRMATION_PAGE = '/welcome';
 
+// localStorage selected sponsor item name
+const SELECTED_SPONSOR = 'selectedSponsor';
+
 class TSJoinProcess {
     constructor() {
         this.api = new TSApi();
@@ -33,6 +36,8 @@ class TSJoinProcess {
     renderKit() {
         this.addKitCardHeaders();
         this.initIncludedItemsModal();
+        this.removeSelectedSponsor();
+        TSCookie.removeJoinCookies();
 
         // Auto-select the first Kit
         const $firstKitCard = $('.kit-card').first();
@@ -59,6 +64,7 @@ class TSJoinProcess {
         this.togglePersonalInfoCheckboxes();
         this.formatPersonalInfoInputFields();
         this.renderFindSponsor();
+        this.removeSelectedSponsor();
         this.openJoinAgreementModal();
         this.closeJoinAgreementModal();
 
@@ -69,6 +75,7 @@ class TSJoinProcess {
         this.triggerConfetti();
         this.showOrderNumber();
         this.updateSelectedSponsorCard();
+        TSCookie.removeJoinCookies();
     }
 
     /**
@@ -364,7 +371,7 @@ class TSJoinProcess {
                  * This info will be used in the confirmation page.
                  */
                 const selectedSponsor = this.getSelectedSponsorInfo();
-                localStorage.setItem('selectedSponsor', JSON.stringify(selectedSponsor));
+                localStorage.setItem(SELECTED_SPONSOR, JSON.stringify(selectedSponsor));
 
                 // Store user's email to cookie
                 const $emailInput = document.getElementById('Email');
@@ -727,7 +734,7 @@ class TSJoinProcess {
     }
 
     updateSelectedSponsorCard() {
-        const consultant = JSON.parse(localStorage.getItem('selectedSponsor'));
+        const consultant = JSON.parse(localStorage.getItem(SELECTED_SPONSOR));
         const $card = document.getElementById('selectedSponsorCard');
         let card = $card.innerHTML;
 
@@ -849,6 +856,10 @@ class TSJoinProcess {
         // in Find a Sponsor, selectConsultant() would not be called
         // multiple times
         $('body').off('click', '#sponsorSearchData .consultant-card');
+    }
+
+    removeSelectedSponsor() {
+        localStorage.removeItem(SELECTED_SPONSOR);
     }
 }
 
