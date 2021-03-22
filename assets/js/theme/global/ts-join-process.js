@@ -489,6 +489,7 @@ class TSJoinProcess {
             { id: 'SSN', messages: errors.SSN },
             { id: 'DateOfBirth', messages: errors.DateOfBirth },
             { id: 'PhoneDetail.MobilePhone', messages: errors['PhoneDetail.MobilePhone'] },
+            { id: 'PhoneDetail.PrimaryPhone', messages: errors['PhoneDetail.PrimaryPhone'] },
             { id: 'CashOptionText', messages: errors.CashOptionText },
             { id: 'ConsultantId', messages: errors.ConsultantId },
             { id: 'Agreement.AgreementSelected', messages: errors['Agreement.AgreementSelected'] },
