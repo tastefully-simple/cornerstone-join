@@ -22,6 +22,12 @@
                 return Cookies.get('joinEmail');
             },
 
+            // Remove join cookies
+            removeJoinCookies: function() {
+                Cookies.remove('joinCartId');
+                Cookies.remove('joinEmail');
+            },
+
             // Debugging
             setTest: function(value) {
                 Cookies.set('_test', value);
