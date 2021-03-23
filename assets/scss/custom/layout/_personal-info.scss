@@ -305,6 +305,10 @@
         padding: .25rem $SPACING_2;
     }
 
+    #formErrorMessages {
+        margin-top: 3rem;
+    }
+
     @media (max-width: 768px) {
         &__mobile-100 {
             width: 100% !important;
