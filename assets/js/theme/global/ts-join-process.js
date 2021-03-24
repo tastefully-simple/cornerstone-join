@@ -549,12 +549,12 @@ class TSJoinProcess {
     searchSponsorById(e) {
         this.clearPersonalInfoErrorMessages();
         this.removeEventHandlers();
+
+        e.preventDefault();
         if (($('#txtConsultantID').val()) === '') {
             $('#sponsorSearchData').empty();
-            e.preventDefault();
             $('#sponsorSearchData').append('Please enter a valid ID in the text box.');
         } else {
-            e.preventDefault();
             $('#sponsorSearchData').empty();
             $('#txtConsultantName').val('');
             $('#txtZipCode').val('');
@@ -566,13 +566,14 @@ class TSJoinProcess {
     searchSponsorByName(e) {
         this.clearPersonalInfoErrorMessages();
         this.removeEventHandlers();
-        if (($('#txtConsultantName').val()) === ''
-            || (($('#ConsultantState').val()) === '')) {
+
+        e.preventDefault();
+        if ($('#txtConsultantName').val() === '') {
             $('#sponsorSearchData').empty();
-            e.preventDefault();
             $('#sponsorSearchData').append('Please enter a name in the text box and select a state');
+        } else if ($('#ConsultantState').val() === null || $('#ConsultantState').val() === "") {
+            $('#ConsultantState').css('border', '1px solid red');
         } else {
-            e.preventDefault();
             $('#sponsorSearchData').empty();
             $('#txtConsultantID').val('');
             $('#txtZipCode').val('');
@@ -584,12 +585,12 @@ class TSJoinProcess {
     searchSponsorByZip(e) {
         this.clearPersonalInfoErrorMessages();
         this.removeEventHandlers();
+
+        e.preventDefault();
         if (($('#txtZipCode').val()) === '') {
             $('#sponsorSearchData').empty();
-            e.preventDefault();
             $('#sponsorSearchData').append('Please enter a zip code in the text box.');
         } else {
-            e.preventDefault();
             $('#sponsorSearchData').empty();
             $('#txtConsultantID').val('');
             $('#txtConsultantName').val('');
@@ -709,6 +710,7 @@ class TSJoinProcess {
 
         if (document.getElementById('sponsorSearchData')) {
             document.getElementById('sponsorSearchData').style.border = '';
+            document.getElementById('ConsultantState').style.border = '';
         }
     }
 
