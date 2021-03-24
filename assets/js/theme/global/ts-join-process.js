@@ -65,6 +65,7 @@ class TSJoinProcess {
         this.formatPersonalInfoInputFields();
         this.renderFindSponsor();
         this.removeSelectedSponsor();
+        this.clearFindSponsorSearch();
         this.openJoinAgreementModal();
         this.closeJoinAgreementModal();
 
@@ -571,7 +572,7 @@ class TSJoinProcess {
         if ($('#txtConsultantName').val() === '') {
             $('#sponsorSearchData').empty();
             $('#sponsorSearchData').append('Please enter a name in the text box and select a state');
-        } else if ($('#ConsultantState').val() === null || $('#ConsultantState').val() === "") {
+        } else if ($('#ConsultantState').val() === null || $('#ConsultantState').val() === '') {
             $('#ConsultantState').css('border', '1px solid red');
         } else {
             $('#sponsorSearchData').empty();
@@ -699,6 +700,13 @@ class TSJoinProcess {
                 </li>
             </ul>
         `);
+    }
+
+    clearFindSponsorSearch() {
+        $('#txtConsultantID').val('');
+        $('#txtConsultantName').val('');
+        $('#ConsultantState').val('');
+        $('#txtZipCode').val('');
     }
 
     clearPersonalInfoErrorMessages() {
