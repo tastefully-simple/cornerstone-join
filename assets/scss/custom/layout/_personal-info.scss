@@ -27,10 +27,17 @@
         margin-top: $SPACING_3;
         padding: $SPACING_4;
         text-align: center;
+        width: 450px;
 
         .heading--1 {
             color: $COLOR_WHITE;
             font-weight: bold;
+        }
+
+        .join-progress-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
         }
 
         .progress-bar {
