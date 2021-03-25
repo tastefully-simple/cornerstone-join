@@ -430,6 +430,10 @@ footer{
     background-image:url('../img/icons/icons-envelope@2x.png');
     @extend .standard-icons;
 }
+.icon-system-chat-bubble{
+    background-image:url('../img/icons/icons-chat-bubble.jpg');
+    @extend .standard-icons;
+}
 .icon-system-alert{
     background-image:url('../img/icons/icons-alert@2x.png');
     @extend .standard-icons;
