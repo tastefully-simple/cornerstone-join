@@ -850,7 +850,7 @@ class TSJoinProcess {
 
     isModifierKey(e) {
         const key = e.keyCode;
-        return (e.shiftKey === true || key === 35 || key === 36) || // Allow Shift, Home, End
+        return (key === 35 || key === 36) || // Allow Home, End
             (key === 8 || key === 9 || key === 13 || key === 46) || // Allow Backspace, Tab, Enter, Delete
             (key > 36 && key < 41) || // Allow left, up, right, down
             (
