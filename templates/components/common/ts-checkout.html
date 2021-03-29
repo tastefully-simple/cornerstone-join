@@ -18,7 +18,8 @@
             if (app) {
                 this.observer.observe(app, {
                     attributes: true,
-                    subtree: true
+                    subtree: true,
+                    childList: true,
                 });
             } else {
                 this.observer.disconnect();
