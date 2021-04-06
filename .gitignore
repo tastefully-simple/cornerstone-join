@@ -13,3 +13,4 @@ vendor/bundle
 .idea/
 /.vs/cornerstone-join/v16/.suo
 /.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json
