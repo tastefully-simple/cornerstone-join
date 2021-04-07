@@ -58,6 +58,26 @@
                 if ($signInNow) {
                     $signInNow.parentElement.remove();
                 }
+
+                /* Order Summary Cart section
+                 * Remove "Edit Cart" link and
+                 * Coupon/Gift Certificate area
+                 */
+                const $editCartLink = document.querySelector('#cart-edit-link');
+                const $couponLabel = document.querySelector('.cart-section .redeemable-label');
+                const $couponInput = document.querySelector('.cart-section div[data-test="redeemable-collapsable"]');
+
+                if ($editCartLink) {
+                    $editCartLink.remove();
+                }
+
+                if ($couponLabel) {
+                    $couponLabel.remove();
+                }
+
+                if ($couponInput) {
+                    $couponInput.remove();
+                }
             });
         }
     }
