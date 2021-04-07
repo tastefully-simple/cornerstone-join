@@ -7,6 +7,7 @@ import ConsultantCard from '../common/consultant-card';
 const KIT_PAGE = '/';
 const PERSONAL_INFO_PAGE = '/tell-us-about-yourself/';
 const CONFIRMATION_PAGE = '/welcome';
+const CART_PAGE = '/cart.php';
 
 // localStorage selected sponsor item name
 const SELECTED_SPONSOR = 'selectedSponsor';
@@ -27,6 +28,9 @@ class TSJoinProcess {
                 break;
             case CONFIRMATION_PAGE:
                 this.renderCheckoutConfirmation();
+                break;
+            case CART_PAGE:
+                this.renderCart();
                 break;
             default:
                 break;
@@ -77,6 +81,14 @@ class TSJoinProcess {
         this.showOrderNumber();
         this.updateSelectedSponsorCard();
         TSCookie.removeJoinCookies();
+    }
+
+    renderCart() {
+        // Remove the ability to edit qty
+        const $qty = document.querySelector('.cart .cart-item-quantity');
+        const $qtyInput = $qty.querySelector('input');
+
+        $qty.innerHTML = `<span>${$qtyInput.value}</span>`;
     }
 
     /**
