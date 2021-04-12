@@ -378,23 +378,29 @@ class TSJoinProcess {
         this.setSubmissionDefaults();
         this.clearPersonalInfoErrorMessages();
 
-        this.api.joinSignUp(this.getUserInfo())
-            .done(() => {
-                /* Store selected sponsor info in local storage.
-                 * This info will be used in the confirmation page.
-                 */
-                const selectedSponsor = this.getSelectedSponsorInfo();
-                localStorage.setItem(SELECTED_SPONSOR, JSON.stringify(selectedSponsor));
+        const cartId = TSCookie.getCartId('joinCartId');
 
-                // Store user's email to cookie
-                const $emailInput = document.getElementById('Email');
-                TSCookie.setJoinEmail($emailInput.value);
+        if (cartId === undefined) {
+            $('#formErrorMessages').append(this.customerServiceErrorMessage());
+        } else {
+            this.api.joinSignUp(this.getUserInfo())
+                .done(() => {
+                    /* Store selected sponsor info in local storage.
+                     * This info will be used in the confirmation page.
+                     */
+                    const selectedSponsor = this.getSelectedSponsorInfo();
+                    localStorage.setItem(SELECTED_SPONSOR, JSON.stringify(selectedSponsor));
 
-                window.location.href = '/checkout.php';
-            })
-            .fail(error => {
-                this.displayCheckoutErrorMessages(error);
-            });
+                    // Store user's email to cookie
+                    const $emailInput = document.getElementById('Email');
+                    TSCookie.setJoinEmail($emailInput.value);
+
+                    window.location.href = '/checkout.php';
+                })
+                .fail(error => {
+                    this.displayCheckoutErrorMessages(error);
+                });
+        }
     }
 
     getUserInfo() {
@@ -483,10 +489,7 @@ class TSJoinProcess {
                     document.getElementById('sponsorSearchData').style.border = '1px solid #D0021B';
                 }
             });
-            $('#formErrorMessages').append(`
-                <h5 class="join__error" >If you continue to experience issues, please contact the 
-                Customer Services team at 866.448.6446.</li>
-            `);
+            $('#formErrorMessages').append(this.customerServiceErrorMessage());
         } else if (error) {
             $('#formErrorMessages').append(`
                 <h4 class="join__error">${error.responseJSON}</h4>
@@ -514,6 +517,11 @@ class TSJoinProcess {
             { id: 'ConsultantId', messages: errors.ConsultantId },
             { id: 'Agreement.AgreementSelected', messages: errors['Agreement.AgreementSelected'] },
         ];
+    }
+
+    customerServiceErrorMessage() {
+        return `<h5 class="join__error" >If you continue to experience issues, please contact the
+            Customer Services team at 866.448.6446.</h5>`;
     }
 
     /**
