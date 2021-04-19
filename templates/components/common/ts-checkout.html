@@ -40,12 +40,18 @@
                 }
 
                 /*
-                 * Remove the newsletter checkbox and
+                 * Remove "Checking out as a Guest? ...",
+                 * the newsletter checkbox and
                  * "Already have an account? Sign in now"
                  */
+                const $checkingOutAsGuestText = document.querySelector('#checkout-customer-guest .form-body p');
                 const $newsletterInput = document.querySelector('#shouldSubscribe');
                 const $newsletterLabel = document.querySelector('label[for="shouldSubscribe"]');
                 const $signInNow = document.querySelector('#checkout-customer-login');
+
+                if ($checkingOutAsGuestText) {
+                    $checkingOutAsGuestText.remove();
+                }
 
                 if ($newsletterInput) {
                     $newsletterInput.remove();
@@ -57,6 +63,13 @@
 
                 if ($signInNow) {
                     $signInNow.parentElement.remove();
+                }
+
+                // Update the "Continue as Guest" button to "Continue"
+                const $continueAsGuestBtn = document.querySelector('#checkout-customer-continue');
+
+                if ($continueAsGuestBtn) {
+                    $continueAsGuestBtn.textContent = 'Continue';
                 }
 
                 /* Order Summary Cart section

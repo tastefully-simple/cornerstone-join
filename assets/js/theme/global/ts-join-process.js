@@ -473,9 +473,22 @@ class TSJoinProcess {
     }
 
     displayCheckoutErrorMessages(error) {
-        if (error.responseJSON.errors) {
-            const errors = error.responseJSON.errors;
-            const checkoutErrors = this.checkoutErrorMessages(errors);
+        if (error.responseJSON) {
+            this.getCheckoutJSONErrors(error.responseJSON);
+        } else if (error.responseText) {
+            $('#formErrorMessages').append(`
+                <h4 class="join__error">${error.responseText}</h4>
+            `);
+        } else {
+            $('#formErrorMessages').append(`
+                <h4  class="join__error">${error}</h4>
+            `);
+        }
+    }
+
+    getCheckoutJSONErrors(errResponse) {
+        if (errResponse.errors) {
+            const checkoutErrors = this.checkoutErrorMessages(errResponse.errors);
 
             checkoutErrors.forEach(checkoutError => {
                 if (checkoutError.messages !== undefined) {
@@ -485,18 +498,16 @@ class TSJoinProcess {
                         `);
                     });
                 }
+
                 if (checkoutError.id === 'ConsultantId' && $('#sponsorSearchData').children.length > 0) {
                     document.getElementById('sponsorSearchData').style.border = '1px solid #D0021B';
                 }
             });
+
             $('#formErrorMessages').append(this.customerServiceErrorMessage());
-        } else if (error) {
-            $('#formErrorMessages').append(`
-                <h4 class="join__error">${error.responseJSON}</h4>
-            `);
         } else {
-            $('#sponsorSearchData').append(`
-                <h4  class="join__error">No results found.</h4>
+            $('#formErrorMessages').append(`
+                <h4 class="join__error">${errResponse}</h4>
             `);
         }
     }
