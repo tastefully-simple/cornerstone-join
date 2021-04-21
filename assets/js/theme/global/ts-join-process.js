@@ -380,10 +380,12 @@ class TSJoinProcess {
 
         const cartId = TSCookie.getCartId('joinCartId');
 
+        const userInfo = this.getUserInfo();
+
         if (cartId === undefined) {
             $('#formErrorMessages').append(this.customerServiceErrorMessage());
         } else {
-            this.api.joinSignUp(this.getUserInfo())
+            this.api.joinSignUp(userInfo)
                 .done(() => {
                     /* Store selected sponsor info in local storage.
                      * This info will be used in the confirmation page.
@@ -394,6 +396,12 @@ class TSJoinProcess {
                     // Store user's email to cookie
                     const $emailInput = document.getElementById('Email');
                     TSCookie.setJoinEmail($emailInput.value);
+
+                    // Used for tracking in Google Analytics
+                    const cashOptionValue =
+                        userInfo.cashOption === 4 ? userInfo.cashOptionText : userInfo.cashOption;
+
+                    TSCookie.setTsCashOption(cashOptionValue);
 
                     window.location.href = '/checkout.php';
                 })

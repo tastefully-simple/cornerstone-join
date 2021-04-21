@@ -22,6 +22,14 @@
                 return Cookies.get('joinEmail');
             },
 
+            // TS Cash Option value
+            setTsCashOption: function(value) {
+                Cookies.set('joinTsCashOption', value);
+            },
+            getTsCashOption: function() {
+                return Cookies.get('joinTsCashOption');
+            },
+
             // Remove join cookies
             removeJoinCookies: function() {
                 Cookies.remove('joinCartId');
