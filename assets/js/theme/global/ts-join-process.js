@@ -536,8 +536,6 @@ class TSJoinProcess {
             { id: 'ConsultantId', messages: errors.ConsultantId },
             { id: 'Agreement.AgreementSelected', messages: errors['Agreement.AgreementSelected'] },
             { id: 'ConsultantExists', messages: errors.ConsultantExists },
-            { id: 'IceProcessUserExists', messages: errors.IceProcessUserExists },
-            { id: 'ConsultantExistsFailedProwess', messages: errors.ConsultantExistsFailedProwess },
         ];
     }
 
