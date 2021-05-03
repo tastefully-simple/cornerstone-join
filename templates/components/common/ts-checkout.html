@@ -95,6 +95,15 @@
                 if ($couponInput) {
                     $couponInput.remove();
                 }
+
+                /* Payment section
+                 * Remove Coupon/Gift Certificate area
+                 */
+                const $couponField = document.querySelector('.checkout-step--payment .redeemable-payments');
+
+                if ($couponField) {
+                    $couponField.remove();
+                }
             });
         }
     }
