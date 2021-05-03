@@ -69,7 +69,11 @@
                 const $continueAsGuestBtn = document.querySelector('#checkout-customer-continue');
 
                 if ($continueAsGuestBtn) {
-                    $continueAsGuestBtn.textContent = 'Continue';
+                    // Check if button's text got updated. If it does,
+                    // ignore it, else, update it to avoid infinite loop
+                    if ($continueAsGuestBtn.textContent !== 'Continue') {
+                        $continueAsGuestBtn.textContent = 'Continue';
+                    }
                 }
 
                 /* Order Summary Cart section
