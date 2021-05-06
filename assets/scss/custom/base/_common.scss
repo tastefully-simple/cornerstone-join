@@ -1,0 +1,54 @@
+// =============================================================================
+// Tastefully Simple Common Styles
+// =============================================================================
+
+body {
+    padding-top:0;
+}
+
+.body {
+    margin-top:7rem;
+}
+.page {
+    margin:auto;
+}
+.confetti{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+// Copy to clipboard (show/hide link copied text)
+.link-copied-text {
+    max-width: 200px;
+    text-align: right;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.link-copied-text.copied {
+    opacity: 1;
+}
+
+@media only screen and (min-width:801px){
+    .body {
+        margin-top:2.5rem;
+    }
+    .container{
+        margin:auto;
+        max-width:1920px;
+        padding:1rem;
+    }
+    .slick-next{
+        right:0;
+    }
+    .slick-prev{
+        left:0;
+    }
+}
+
+@media only screen and (min-width:960px){
+    .container{
+        padding:1rem 2rem;
+    }
+}

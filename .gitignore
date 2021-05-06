@@ -11,3 +11,6 @@ vendor/bundle
 *.js.map
 *.zip
 .idea/
+/.vs/cornerstone-join/v16/.suo
+/.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json

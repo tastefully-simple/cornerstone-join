@@ -1,0 +1,43 @@
+<style>
+    /* TST-341
+     * Putting the progress bar stylings here because
+     * creating a new file and placing it
+     * in assets/custom/layout does not work
+     */
+    .join-checkout-progress-bar {
+        background-color: teal;
+        padding-bottom: 3rem;
+        text-align: center;
+
+    }
+    .join-checkout-progress-labels {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        max-width: 415px;
+        padding-top: 4rem;
+        width: 100%;
+    }
+
+    .join-checkout-progress-labels h4 {
+        color: #f1f0ee; /* wan-white */
+        margin: 0;
+    }
+
+    .join-checkout-progress-bar .progress-bar-img {
+        margin-left: 1rem;
+    }
+</style>
+
+<div class="join-checkout-progress-bar">
+    <div class="join-checkout-progress-labels">
+        <h4>Choose Kit</h4>
+        <h4>Share Details</h4>
+        <h4><strong>Checkout</strong></h4>
+    </div>
+    {{> components/common/responsive-img
+    image=image
+    class="progress-bar-img"
+    default_image=theme_settings.ts_progress_bar_3
+    }}
+</div>

@@ -1,0 +1,113 @@
+{{!-- TST-342 --}}
+<script type="text/javascript">
+    // TSCookie is not accessible in the checkout page
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    class TSCheckout {
+        constructor(app) {
+            this.observeApp(app);
+        }
+
+        observeApp(app) {
+            this.observer = new MutationObserver(this.mutationCallback);
+
+            if (app) {
+                this.observer.observe(app, {
+                    attributes: true,
+                    subtree: true,
+                    childList: true,
+                });
+            } else {
+                this.observer.disconnect();
+            }
+        }
+
+        mutationCallback(mutations) {
+            mutations.forEach(mutation => {
+                // Inject customer's email address (from cookie) to Checkout page's email input
+                const $email = document.querySelector('#email');
+
+                if ($email) {
+                    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
+                    const email = getCookie('joinEmail');
+                    nativeInputValueSetter.call($email, email);
+                    const inputEvent = new Event('input', { bubbles: true });
+                    $email.dispatchEvent(inputEvent);
+                }
+
+                /*
+                 * Remove "Checking out as a Guest? ...",
+                 * the newsletter checkbox and
+                 * "Already have an account? Sign in now"
+                 */
+                const $checkingOutAsGuestText = document.querySelector('#checkout-customer-guest .form-body p');
+                const $newsletterInput = document.querySelector('#shouldSubscribe');
+                const $newsletterLabel = document.querySelector('label[for="shouldSubscribe"]');
+                const $signInNow = document.querySelector('#checkout-customer-login');
+
+                if ($checkingOutAsGuestText) {
+                    $checkingOutAsGuestText.remove();
+                }
+
+                if ($newsletterInput) {
+                    $newsletterInput.remove();
+                }
+
+                if ($newsletterLabel) {
+                    $newsletterLabel.remove();
+                }
+
+                if ($signInNow) {
+                    $signInNow.parentElement.remove();
+                }
+
+                // Update the "Continue as Guest" button to "Continue"
+                const $continueAsGuestBtn = document.querySelector('#checkout-customer-continue');
+
+                if ($continueAsGuestBtn) {
+                    // Check if button's text got updated. If it does,
+                    // ignore it, else, update it to avoid infinite loop
+                    if ($continueAsGuestBtn.textContent !== 'Continue') {
+                        $continueAsGuestBtn.textContent = 'Continue';
+                    }
+                }
+
+                /* Order Summary Cart section
+                 * Remove "Edit Cart" link and
+                 * Coupon/Gift Certificate area
+                 */
+                const $editCartLink = document.querySelector('#cart-edit-link');
+                const $couponLabel = document.querySelector('.cart-section .redeemable-label');
+                const $couponInput = document.querySelector('.cart-section div[data-test="redeemable-collapsable"]');
+
+                if ($editCartLink) {
+                    $editCartLink.remove();
+                }
+
+                if ($couponLabel) {
+                    $couponLabel.remove();
+                }
+
+                if ($couponInput) {
+                    $couponInput.remove();
+                }
+
+                /* Payment section
+                 * Remove Coupon/Gift Certificate area
+                 */
+                const $couponField = document.querySelector('.checkout-step--payment .redeemable-payments');
+
+                if ($couponField) {
+                    $couponField.remove();
+                }
+            });
+        }
+    }
+
+    const $checkoutApp = document.getElementById('checkout-app');
+    const customCheckout = new TSCheckout($checkoutApp);
+</script>

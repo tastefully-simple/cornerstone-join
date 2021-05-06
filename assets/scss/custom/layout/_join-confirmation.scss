@@ -1,0 +1,73 @@
+// Razoyo TST Join Confirmation Styles (Shogun Page) - Replaces old Irish Titan styles
+// -----------------------------------------------------------------------------
+
+.welcome-step-item {
+    .step-item-heading {
+        .shg-box-content {
+            align-items:center;
+            display:flex;
+            p {
+                border:3px solid $white;
+                border-radius:50%;
+                height:50px;
+                line-height:1;
+                margin-bottom:0;
+                text-align:center;
+                width:50px;
+            }
+        }
+    }
+    .step-item-content {
+        &.step-item-connected {
+            .shg-box-content {
+                align-items:center;
+                display:flex;
+                p {
+                    margin-bottom:0;
+                }
+                .icon-social-facebook {
+                    vertical-align:middle;
+                }
+            }
+        }
+    }
+}
+.welcome-contact-content {
+    align-items:center;
+    .welcome-contact-item {
+        .shg-box-content {
+            align-items:center;
+            display:flex;
+            [class^="icon-system"] {
+                display:block;
+                height:36px;
+                width:36px;
+            }
+            p {
+                margin-bottom:0;
+                a {
+                    font-size:16px;
+                }
+            }
+        }
+    }
+}
+
+.confetti {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.join-order-number {
+    text-align: right;
+    margin-right: 1.5rem;
+}
+
+#selectedSponsorCard {
+    background: white;
+    max-width: 500px;
+    border-top: 50px solid $shady-lady;
+    cursor: default;
+}
