@@ -1,0 +1,77 @@
+<script type="text/javascript">
+window.dataLayer = window.dataLayer||[];
+function trackGTMEcommerce() {
+    this._addTrans = addTrans;
+    this._addItem = addItems;
+    this._trackTrans = trackTrans;
+}
+
+var transaction = {};
+transaction.transactionProducts = [];
+
+function addTrans(orderID, store, total, tax, shipping, city, state, country) {
+    transaction.transactionId = orderID;
+    transaction.transactionAffiliation = store;
+    transaction.transactionTotal = total;
+    transaction.transactionTax = tax;
+    transaction.transactionShipping = shipping;
+}
+
+
+function addItems(orderID, sku, product, variation, price, quantity) {
+    transaction.transactionProducts.push({
+        'id': orderID,
+            'sku': sku,
+            'name': product,
+            'category': variation,
+            'price': price,
+            'quantity': quantity
+    });
+}
+
+function trackTrans() {
+    transaction.event = 'transactionSuccess';
+    dataLayer.push(transaction);
+}
+
+var pageTracker = new trackGTMEcommerce();
+
+function getConsultantId() {
+    var selectedConsultant = JSON.parse(localStorage.getItem('selectedSponsor'));
+    
+    if (selectedConsultant) {
+        return selectedConsultant.cid;
+    } else {
+        return null;
+    }
+}
+
+function getTsCashOption() {
+    var cookieName = 'joinTsCashOption';
+    var value = `; ${document.cookie}`;
+    var parts = value.split(`; ${cookieName}=`);
+  
+    if (parts.length === 2) {
+        return parts.pop().split(';').shift();
+    } else {
+        return null;
+    }
+}
+
+var consultantId = getConsultantId();
+var tsCashOption = getTsCashOption();
+
+window.dataLayer.push({
+    'event' : 'join',
+    'dimension2' : consultantId,
+    'dimension5': tsCashOption
+});
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PD7HGB2');</script>
+<!-- End Google Tag Manager -->
