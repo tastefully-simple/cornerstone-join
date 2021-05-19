@@ -1,0 +1,67 @@
+// =============================================================================
+// PAGINATION (CSS)
+// =============================================================================
+
+
+// Pagination list items
+
+.custom-pagination-list {
+    @include clearfix;
+
+    font-size: 0;
+    margin-bottom: spacing("single");
+    text-align: center;
+
+    .custom-pagination-item {
+        display: inline-block;
+    }
+}
+
+
+// Pagination list items
+
+.custom-pagination-item {
+    border: $pagination-item-border;
+    line-height: 1;
+
+    .custom-pagination-link {
+        text-decoration: none;
+        transition: $pagination-link-transition;
+        color: #2d2d2d;
+        padding: .2rem;
+
+        &:hover {
+            color: $pagination-link-color-hover;
+        }
+        &.isDisabled {
+            color: currentColor;
+            cursor: default;
+            opacity: 0.5;
+            text-decoration: none;
+        }
+    }
+
+    &.custom-pagination-item--current {
+        text-decoration: underline;
+    }
+
+    &.custom-pagination-item--previous,
+    &.custom-pagination-item--next {
+        > a {
+            color: $pagination-item-previousNext-color;
+
+            &:hover {
+                color: $pagination-item-previousNext-color-hover;
+            }
+        }
+    }
+}
+
+.custom-pagination-item--previous {
+    float: left;
+}
+
+.custom-pagination-item--next {
+    float: right;
+}
+

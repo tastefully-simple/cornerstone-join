@@ -1,0 +1,46 @@
+body {
+    font-family: $FONT_FAMILY_PRIMARY, 'sans-serif';
+    font-size: $FONT_SIZE_BASE;
+    font-weight: $FONT_WEIGHT_NORMAL;
+    color: $COLOR_BLACK;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+}
+
+a {
+    color: $COLOR_PRIMARY_100;
+
+	&:focus,
+	&:active {
+		color: $COLOR_BLACK;
+		text-decoration: underline;
+	}
+}
+
+strong, b {
+    font-weight: $FONT_WEIGHT_BOLD;
+}
+
+svg {
+    display: inline-block;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+img {
+	max-width: 100%;
+	display: block;
+}

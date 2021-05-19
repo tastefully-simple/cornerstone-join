@@ -1,0 +1,82 @@
+// =============================================================================
+// MODAL OVERLAY (CSS)
+// =============================================================================
+
+.modal-overlay {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: -100px;
+    bottom: 0;
+    max-height: calc(100vh-210px);
+    background: rgba(45,45,45,0.47);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100;
+    overflow-y: auto;
+
+    &--active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &-content-wrapper {
+      position: relative;
+      width: 80%;
+      max-width: 1000px;
+      margin: 0 auto;
+      margin-top: 150px;
+      margin-bottom: 100px;
+      padding: 4rem;
+      background-color: white;
+      border-radius: 5px;
+
+      @include breakpoint($BREAKPOINT_MEDIUM) {
+        margin-top: 250px;
+        margin-bottom: 250px;
+      }
+
+      .heading--1 {
+        margin-bottom: $SPACING_4;
+        color: $COLOR_SECONDARY_200;
+        text-align: center;
+      }
+
+      &--close-header-icon{
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        right: $SPACING_2;
+        top: $SPACING_2;
+        fill: $COLOR_SECONDARY_200;
+        cursor: pointer;
+      }
+    }
+
+    &--close-footer {
+      display: flex;
+      justify-content: center;
+
+      &-icon{
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+        fill: $COLOR_SECONDARY_200;
+        cursor: pointer;
+      }
+
+      p {
+        margin-bottom: 0;
+        color: $COLOR_SECONDARY_200;
+        font-family: $FONT_FAMILY_SECONDARY;
+      }
+    }
+
+    #terms-conditions {
+
+      &.hidden {
+        @include visuallyHidden();
+      }
+    }
+}
+

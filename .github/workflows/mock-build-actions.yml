@@ -1,10 +1,10 @@
-# Deploy Theme to Store when new changes are pushed to master branch
-name: Deploy Theme to Store
+name: Publish Business Sandbox Join Store
 
 on:
-  workflow_dispatch:
-  push:
-    branches: [ master, main ]
+  pull_request:
+   types: [closed]
+   branches:
+      mock
 
 jobs:
   build:
@@ -30,22 +30,17 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
-
     - name: Install Stencil CLI Dependency
       run: npm install -g @bigcommerce/stencil-cli
 
     - name: Install Dependencies
       run: npm ci
 
-#
-# You must configure store credentials as secrets on your GitHub repo for automatic deployment via GitHub Actions
-#
-
     - name: Connect to store
       env:
-        URL: ${{ secrets.STENCIL_STORE_URL_PRODUCTION }}
-        TOKEN: ${{ secrets.STENCIL_ACCESS_TOKEN_PRODUCTION }}
+        URL: ${{ secrets.STENCIL_STORE_URL_JOIN_BUSINESS_SANDBOX }}
+        TOKEN: ${{ secrets.STENCIL_ACCESS_TOKEN_JOIN_BUSINESS_SANDBOX }}
       run: stencil init -u $URL -t $TOKEN -p 3000
 
-    - name: Push theme live, automatically deleting oldest theme if necessary
-      run: stencil push -a -d
+    - name: Publishing theme to Business-Sandbox Join Store, automatically deleting oldest theme if necessary
+      run: stencil push -a Business-Sandbox -d
