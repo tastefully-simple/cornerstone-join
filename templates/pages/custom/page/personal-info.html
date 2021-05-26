@@ -85,9 +85,9 @@
                     <input type="checkbox" id="PhoneIsMobile" name="PhoneIsMobile" value="true" checked>
                     <label for="PhoneIsMobile" class="join__form--checkbox-label">My mobile number is my primary</label>
                 </div>
-                <div id="primaryPhoneField" class="disabled">
+                <div id="primaryPhoneField">
                     <label for="PrimaryPhone">Primary Phone</label>
-                    <input type="tel" id="PrimaryPhone" name="PrimaryPhone" value="" disabled>
+                    <input type="tel" id="PrimaryPhone" name="PrimaryPhone" value="">
                 </div>
                 <div id="textingCheckboxField" class="" style="margin-bottom:16px;">
                     <input type="checkbox" id="SmsOptIn" name="SmsOptIn" value="true" checked>
@@ -133,29 +133,19 @@
         <div class="join__content">
             <div class="find-sponsor-heading">
                 <h2 class="textgray-text">2. Find Your Sponsor</h2>
-                {{!-- TST-371 Remove tooltip
                 <span class="find-sponsor-info">
                     <span class="icon-system-info" data-dropdown="findSponsorInfo"></span>
                     <div id="findSponsorInfo" class="dropdown-menu tooltip-content tooltip-center" data-dropdown-content="">
                         <div>
                             <span class="close-tooltip">x</span>
-                            <p class="system-14">Tooltip text here</p>
+                            <p class="system-14">{{ theme_settings.ts_find_sponsor_tooltip_info }}</p>
                         </div>
                     </div>
                 </span>
-                --}}
             </div>
             <div class="join__content-container">
                 <p>Your sponsor will be your partner on the way to achieving your business goals. Search by consultant ID, consultant name or zip code.</p>
                 <form id="consultantSearchForm">
-                    <div>
-                        <h4 class="textgray-text">Search by Consultant ID</h4>
-                        <label for="txtConsultantId" class="input-label">
-                            <span>Consultant ID</span>
-                            <input type="text" id="txtConsultantID" value="" class="short" name="consultantId">
-                        </label>
-                        <button id="btnConsIdSearch" class="button-secondary">search</button>
-                    </div>
                     <div>
                         <h4 class="textgray-text">Search by Consultant Name</h4>
                         <div class="input-dropdown">
@@ -234,6 +224,14 @@
                             <input type="text" id="txtZipCode" class="short" placeholder="55608" value="" name="consultantZipCode">
                         </label>
                         <button id="btnConsZipSearch" class="button-secondary">search</button>
+                    </div>
+                    <div>
+                        <h4 class="textgray-text">Search by Consultant ID</h4>
+                        <label for="txtConsultantId" class="input-label">
+                            <span>Consultant ID</span>
+                            <input type="text" id="txtConsultantID" value="" class="short" name="consultantId">
+                        </label>
+                        <button id="btnConsIdSearch" class="button-secondary">search</button>
                     </div>
                     <h4 class="teal-text">Select Your Sponsor</h4>
                     <div class="sponsorSearchData-wrapper">
