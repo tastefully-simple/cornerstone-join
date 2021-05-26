@@ -65,6 +65,7 @@ class TSJoinProcess {
 
         this.removeClassContainer();
         this.changePersonalInfoSelectValueStyling();
+        this.renderPrimaryPhoneField();
         this.togglePersonalInfoCheckboxes();
         this.formatPersonalInfoInputFields();
         this.renderFindSponsor();
@@ -257,6 +258,16 @@ class TSJoinProcess {
         if (selectors) { addChangeHandler(selectors); }
     }
 
+    renderPrimaryPhoneField() {
+        const $primaryPhone = this.$personalInfo.querySelector('#PrimaryPhone');
+        const $primaryPhoneDiv = this.$personalInfo.querySelector('#primaryPhoneField');
+
+        if ($primaryPhone.value === '') {
+            $primaryPhoneDiv.classList.add('disabled');
+            $primaryPhone.setAttribute('disabled', 'disabled');
+        }
+    }
+
     togglePersonalInfoCheckboxes() {
         this.togglePrimaryPhoneCheckbox();
         this.toggleTextOptInCheckbox();
@@ -268,11 +279,15 @@ class TSJoinProcess {
         const $phoneCheckbox = this.$personalInfo.querySelector('#PhoneIsMobile');
         const $primaryPhone = this.$personalInfo.querySelector('#PrimaryPhone');
         const $primaryPhoneDiv = this.$personalInfo.querySelector('#primaryPhoneField');
+        const $mobilePhone = this.$personalInfo.querySelector('#Phone');
 
         $phoneCheckbox.addEventListener('change', (e) => {
             if (!e.target.checked) {
                 $primaryPhoneDiv.classList.remove('disabled');
                 $primaryPhone.removeAttribute('disabled');
+                if ($mobilePhone.value === '') {
+                    document.getElementById('SmsOptIn').checked = false;
+                }
             } else {
                 $('#primaryPhone').val('');
                 $primaryPhoneDiv.classList.add('disabled');
@@ -283,9 +298,10 @@ class TSJoinProcess {
 
     toggleTextOptInCheckbox() {
         const $optInText = this.$personalInfo.querySelector('#SmsOptIn');
+        const $mobilePhone = this.$personalInfo.querySelector('#Phone');
 
         $optInText.addEventListener('change', (e) => {
-            if (e.target.checked) {
+            if (e.target.checked && $mobilePhone.value !== '') {
                 document.getElementById('SmsOptIn').checked = true;
             } else {
                 document.getElementById('SmsOptIn').checked = false;
