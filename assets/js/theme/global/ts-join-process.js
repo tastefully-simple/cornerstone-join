@@ -12,6 +12,12 @@ const CART_PAGE = '/cart.php';
 // localStorage selected sponsor item name
 const SELECTED_SPONSOR = 'selectedSponsor';
 
+const SEARCH_BY = {
+    id: 'id',
+    name: 'name',
+    zip: 'zip',
+};
+
 class TSJoinProcess {
     constructor() {
         this.api = new TSApi();
@@ -616,7 +622,7 @@ class TSJoinProcess {
             $('#txtConsultantName').val('');
             $('#txtZipCode').val('');
             const apiParams = `cid/${this.sponsorSearchParams.consultantId}`;
-            this.getSponsor(apiParams);
+            this.getSponsor(apiParams, SEARCH_BY.id);
         }
     }
 
@@ -635,7 +641,7 @@ class TSJoinProcess {
             $('#txtConsultantID').val('');
             $('#txtZipCode').val('');
             const apiParams = `name/${this.sponsorSearchParams.consultantName}/${this.sponsorStateLocation}/1`;
-            this.getSponsor(apiParams);
+            this.getSponsor(apiParams, SEARCH_BY.name);
         }
     }
 
@@ -652,14 +658,11 @@ class TSJoinProcess {
             $('#txtConsultantID').val('');
             $('#txtConsultantName').val('');
             const apiParams = `zip/${this.sponsorSearchParams.consultantZipCode}/200/1`;
-            this.getSponsorByZip(apiParams);
+            this.getSponsor(apiParams, SEARCH_BY.zip);
         }
     }
 
-    /**
-     * Get Sponsor by ID or Name
-     */
-    getSponsor(apiParams) {
+    getSponsor(apiParams, searchBy) {
         this.api.getSponsor(apiParams)
             .done(data => {
                 if (data.Results !== null) {
@@ -670,27 +673,17 @@ class TSJoinProcess {
                 if (error.status >= 500 && error.status < 600) {
                     this.renderSponsorErrorMessage();
                 } else {
-                    this.sponsorOptedOutErrorMessage();
-                }
-            });
-    }
-
-    /**
-     * Get Sponsor by ZIP
-     */
-    getSponsorByZip(apiParams) {
-        this.api.getSponsor(apiParams)
-            .done(data => {
-                if (data.Results !== null) {
-                    this.renderSponsorResult(data);
-                }
-            })
-            .fail(error => {
-                if (error.status >= 500 && error.status < 600) {
-                    this.renderSponsorErrorMessage();
-                } else {
-                    document.getElementById('divTsConsFound').style.display = 'block';
-                    this.renderSponsorResult(this.defaultSponsorData);
+                    switch (searchBy) {
+                        case 'name':
+                            this.sponsorNameNotFoundErrorMessage();
+                            break;
+                        case 'zip':
+                            document.getElementById('divTsConsFound').style.display = 'block';
+                            this.renderSponsorResult(this.defaultSponsorData);
+                            break;
+                        default:
+                            this.sponsorOptedOutErrorMessage();
+                    }
                 }
             });
     }
@@ -744,6 +737,7 @@ class TSJoinProcess {
         $responseWrapper.append('<p>An error has occurred.</p>');
     }
 
+    // Error for search by ID
     sponsorOptedOutErrorMessage() {
         const $responseWrapper = $('#sponsorSearchData');
         $responseWrapper.addClass('sponsor-result--error');
@@ -758,12 +752,15 @@ class TSJoinProcess {
         `);
     }
 
-    // @razoyo: new error message for Name not found
+    // Error for search by Name/State
     sponsorNameNotFoundErrorMessage() {
         const $responseWrapper = $('#sponsorSearchData');
         $responseWrapper.addClass('sponsor-result--error');
         $responseWrapper.append(`
-            <p>Sorry, we couldn't find a sponsor under that name. Please verify the name and state or search by their consultant ID. If your sponsor is still not found, contact our Customer Service Team at <a class="textgray-text" href="tel:+18664486446">1.866.448.6446</a> or <a class="textgray-text" href="mailto:help@tastefullysimple.com">help@tastefullysimple.com</a></p>
+            <p>Sorry, we couldn't find a sponsor under that name. Please verify the name and state or
+            search by their consultant ID. If your sponsor is still not found, contact our Customer
+            Service Team at <a class="textgray-text" href="tel:+18664486446">1.866.448.6446</a> or
+            <a class="textgray-text" href="mailto:help@tastefullysimple.com">help@tastefullysimple.com</a></p>
         `);
     }
 
