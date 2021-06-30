@@ -563,7 +563,7 @@ class TSJoinProcess {
 
     customerServiceErrorMessage() {
         return `<h5 class="join__error" >If you continue to experience issues, please contact the
-            Customer Services team at 866.448.6446.</h5>`;
+            Customer Service team at 866.448.6446.</h5>`;
     }
 
     /**
@@ -759,7 +759,7 @@ class TSJoinProcess {
         $responseWrapper.append(`
             <p>Sorry, we couldn't find a sponsor under that name. Please verify the name and state or
             search by their consultant ID. If your sponsor is still not found, contact our Customer
-            Services Team at <a class="textgray-text" href="tel:+18664486446">1.866.448.6446</a> or
+            Service Team at <a class="textgray-text" href="tel:+18664486446">1.866.448.6446</a> or
             <a class="textgray-text" href="mailto:help@tastefullysimple.com">help@tastefullysimple.com</a></p>
         `);
     }
