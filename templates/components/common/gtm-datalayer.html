@@ -36,16 +36,6 @@ function trackTrans() {
 
 var pageTracker = new trackGTMEcommerce();
 
-function getConsultantId() {
-    var selectedConsultant = JSON.parse(localStorage.getItem('selectedSponsor'));
-    
-    if (selectedConsultant) {
-        return selectedConsultant.cid;
-    } else {
-        return null;
-    }
-}
-
 function getTsCashOption() {
     var cookieName = 'joinTsCashOption';
     var value = `; ${document.cookie}`;
@@ -58,13 +48,12 @@ function getTsCashOption() {
     }
 }
 
-var consultantId = getConsultantId();
 var tsCashOption = getTsCashOption();
 
 window.dataLayer.push({
     'event' : 'join',
-    'dimension2' : consultantId,
-    'dimension5': tsCashOption
+    'dimension4' : true, // joinSession
+    'dimension5': tsCashOption // spendDropdown
 });
 </script>
 
