@@ -50,19 +50,19 @@
                 const $signInNow = document.querySelector('#checkout-customer-login');
 
                 if ($checkingOutAsGuestText) {
-                    $checkingOutAsGuestText.remove();
+                    $checkingOutAsGuestText.style.display = 'none';
                 }
 
                 if ($newsletterInput) {
-                    $newsletterInput.remove();
+                    $newsletterInput.style.display = 'none';
                 }
 
                 if ($newsletterLabel) {
-                    $newsletterLabel.remove();
+                    $newsletterLabel.style.display = 'none';
                 }
 
                 if ($signInNow) {
-                    $signInNow.parentElement.remove();
+                    $signInNow.parentElement.style.display = 'none';
                 }
 
                 // Update the "Continue as Guest" button to "Continue"
@@ -85,15 +85,15 @@
                 const $couponInput = document.querySelector('.cart-section div[data-test="redeemable-collapsable"]');
 
                 if ($editCartLink) {
-                    $editCartLink.remove();
+                    $editCartLink.style.display = 'none';
                 }
 
                 if ($couponLabel) {
-                    $couponLabel.remove();
+                    $couponLabel.style.display = 'none';
                 }
 
                 if ($couponInput) {
-                    $couponInput.remove();
+                    $couponInput.style.display = 'none';
                 }
 
                 /* Payment section
