@@ -1,6 +1,17 @@
 <script type="text/javascript">
     (function(w) {
+        let cookieDomain = window.location.hostname;
+        if (cookieDomain == 'www.tastefullysimple.com') cookieDomain = 'tastefullysimple.com';
         w.TSCookie = {
+            // Consultant ID
+            // Type: Str
+            setConsultantId: function(cid) {
+                // Remove trailing spaces
+                const newCid = cid ? cid.trim() : cid;
+
+                Cookies.set('cid', newCid, { domain: cookieDomain });
+            },
+
             // Order Id
             getOrderId: function() {
                 return Cookies.get('joinOrderId');
