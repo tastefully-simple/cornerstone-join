@@ -239,27 +239,24 @@
                         <div id="sponsorSearchData">
                         </div>
                         <div id="divTsConsFound" style="display:none; padding-left:5px; padding-right:5px;">
-                            <br />
                             There is no consultant near you, but not to worry! Select Tastefully Simple as your sponsor and continue. 
                             We will contact you to find the best sponsor near you.
                         </div>
                     </div>
                     <div class="join__terms">
                         <h4 class="textgray-text">Independent Consultant Agreement</h4>
-                        <table style="width:100%; margin-bottom: 10px;">
-                            <tr>
-                                <td valign="middle" style="width:5%;"><input type="checkbox" id="TermsCheckboxVisible" name="TermsCheckboxVisible" value=""></td>
-                                <td>
-                                    <label for="TermsCheckboxVisible" style="font-size: 12px;">
-                                        I understand and accept the terms and conditions of the <a id="openTermsModal">Tastefully Simple independent consultant agreement</a>
-                                    </label>
-                                </td>
-                            </tr>
-                        </table>     
+                        <div class="join__terms-input">
+                            <input type="checkbox" id="TermsCheckboxVisible" name="TermsCheckboxVisible" value="">
+                            <div>
+                                <label for="TermsCheckboxVisible">
+                                    <span class="system-12">I understand and accept the terms and conditions of the</span>
+                                </label>
+                                <button id="openTermsModal" class="global-link">Tastefully Simple independent consultant agreement</button>
+                            </div>
+                        </div>
                     </div>
                     <button id="checkout" value="checkout" class="button-secondary-icon">checkout</button>
                 </form>
-                <br />
                 <div id="formErrorMessages"></div>
             </div>
         </div>

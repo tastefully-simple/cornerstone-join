@@ -302,6 +302,24 @@
         .heading--4 {
             text-align: center;
         }
+        .join__terms-input {
+            align-items: center;
+            display: flex;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            input {
+                flex-basis: 30px;
+            }
+            label {
+                margin-bottom: 3px;
+                padding-left: 7px;
+            }
+            #openTermsModal {
+                color: $burgundy;
+                text-align: left;
+                text-decoration: underline;
+            }
+        }
     }
     //styling for checkout button
     #checkout {
