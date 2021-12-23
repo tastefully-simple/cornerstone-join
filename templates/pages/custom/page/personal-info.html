@@ -12,6 +12,7 @@
             image=image
             class="progress-bar"
             default_image=theme_settings.ts_progress_bar_2
+            alt="Progress bar icon"
             }}
         </div>
     </div>
@@ -31,7 +32,7 @@
                     </select>
                 </div>
                 <div id="preferredNameField" class="">
-                    <label for="preferredName" class="input-label">
+                    <label for="PreferredName" class="input-label">
                         <span>Preferred First Name</span>
                         <input type="text" id="PreferredName" name="PreferredName" value="" placeholder="Preferred name">
                     </label>
@@ -64,12 +65,12 @@
                     <label for="SSN" class="input-label">
                         <span>Social Security Number</span>
                         <input type="text" id="SSN" name="SSN" value="" placeholder="123-45-6789">
-                        <img src="{{cdn 'assets/img/secure-lock.png'}}">
+                        <img src="{{cdn 'assets/img/secure-lock.png'}}" alt="secure lock icon">
                     </label>
                     <p class="join__field--subtext">For authentication and tax purposes, we need your Social Security Number to get your business started.</p>
                 </div>
                 <div id="DOBField" class="">
-                    <label for="DOB" class="input-label">
+                    <label for="BirthDate" class="input-label">
                         <span>Date of Birth</span>
                         <input type="date" id="BirthDate" name="BirthDate" placeholder="mm-dd-yyyy" class="empty" max="9999-12-31">
                         <input type="hidden" id="Birthday" name="Birthday" value="">
@@ -113,7 +114,7 @@
                 </div>
                 <div id="termsCheckboxHiddenField" class="hidden">
                     <input type="checkbox" id="TermsOptIn" name="TermsOptIn" value="true">
-                    <label for="TermsCheckbox" class="join__form--checkbox-label">Terms &amp; Conditions opt-in</label>
+                    <label for="TermsOptIn" class="join__form--checkbox-label">Terms &amp; Conditions opt-in</label>
                 </div>
                 <div id="termsVersion" class="hidden">
                     <label for="TermsVersion" class="input-label">
@@ -227,7 +228,7 @@
                     </div>
                     <div>
                         <h4 class="textgray-text">Search by Consultant ID</h4>
-                        <label for="txtConsultantId" class="input-label">
+                        <label for="txtConsultantID" class="input-label">
                             <span>Consultant ID</span>
                             <input type="text" id="txtConsultantID" value="" class="short" name="consultantId">
                         </label>
