@@ -12,7 +12,7 @@
         align-items: top;
         min-height: 250px;
         margin-top: -5rem;
-        background-color: $COLOR_PRIMARY_100;
+        background-color: $teal-hover;
     }
 
     &--login .join__banner {
@@ -219,7 +219,7 @@
         .join__field--subtext {
             margin-left: $SPACING_1;
             margin-top: -1 * $SPACING_2;
-            color: $COLOR_GRAY_200;
+            color: $text-gray;
             font-size: 13px;
         }
 
