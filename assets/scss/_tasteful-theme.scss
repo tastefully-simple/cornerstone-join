@@ -8,6 +8,8 @@
 // Primary
 $brown: #4c3723;
 $burgundy: #610b31;
+$butterscotch: #ddcda6;
+$burnt-caramel: #854a0f;
 $caramel: #b46c20;
 $cream: #f0ebdf;
 $grape: #720f4b;
@@ -15,6 +17,7 @@ $light-burgundy: #7f4252;
 // Secondary
 $banana: #ffe438;
 $berry: #eb2257;
+$davys-gray: #575757;
 $gainsboro: #e2e2e2;
 $green: #2f722e;
 $green-hover: #859407;
@@ -47,6 +50,9 @@ $utility-success: #d5ffd8;
 }
 .burgundy-text{
     color: $burgundy;
+}
+.butterscotch-text{
+    color: $butterscotch;
 }
 .caramel-text{
     color: $caramel;
@@ -120,6 +126,9 @@ $utility-success: #d5ffd8;
 }
 .burgundy-background{
     background-color: $burgundy;
+}
+.butterscotch-background{
+    background-color: $butterscotch;
 }
 .caramel-background{
     background-color: $caramel;
@@ -231,6 +240,9 @@ a,
     text-transform:unset;
     @extend .frametext-semibold;
 }
+.frame-subhead {
+    font-size:14px;
+}
 .framelink-xl{
     @extend .frametext-black;
 }
@@ -296,9 +308,13 @@ footer{
     background-color:$teal;
     border-color:$teal;
     @extend .button-primary;
-    &:hover{
+    &:not([disabled]):hover{
         background-color:$teal-hover;
         border-color:$teal-hover;
+    }
+    &:focus {
+        background-color: $teal;
+        border-color: $teal;
     }
 }
 .button--secondary{
@@ -316,12 +332,46 @@ footer{
     background-color:$green-apple;
     border-color:$green-apple;
     @extend .button-primary;
-    &:hover{
+    &:not([disabled]):hover{
+        background-color:$green-hover;
+        border-color:$green-hover;
+    }
+    &:focus {
+        background-color: $green-apple;
+        border-color: $green-apple;
+    }
+}
+[disabled].button-alternate-disabled {
+    @extend .button-alternate;
+    opacity:.5;
+    &:hover {
+        background-color:$green-hover;
+        border-color:$green-hover;
+    }
+}
+.button-alternate-icon{
+    @extend .button-alternate;
+    &::after{
+        content:"\f105";
+        font-family:"FontAwesome";
+        margin-left:10px;
+    }
+    &:hover {
         background-color:$green-hover;
         border-color:$green-hover;
     }
 }
 
+.button-cancel{
+    background-color:$white;
+    border-color:$green-apple;
+    color:$green-apple;
+    @extend .button-primary;
+    &:not([disabled]):hover{
+        background-color:$green-apple;
+        border-color:$green-apple;
+    }
+}
 
 // Icons
 // -----------------------------------------------------------------------------
@@ -428,10 +478,6 @@ footer{
 }
 .icon-system-envelope{
     background-image:url('../img/icons/icons-envelope@2x.png');
-    @extend .standard-icons;
-}
-.icon-system-chat-bubble{
-    background-image:url('../img/icons/icons-chat@2x.png');
     @extend .standard-icons;
 }
 .icon-system-alert{
@@ -563,6 +609,30 @@ input{
         width:15px;
     }
 }
+.burgundy-radio {
+    label {
+        &> input[type="radio"] {
+            display: none;
+            &+ *::before {
+                background-color: $white;
+                border-radius: 50%;
+                border:0.01rem solid $burgundy;
+                content: "";
+                display: inline-block;
+                height: 1rem;
+                margin-right: 0.3rem;
+                vertical-align: bottom;
+                width: 1rem;
+            }
+            &:checked {
+                &+ *::before {
+                  background: radial-gradient($burgundy 0%, $burgundy 40%, transparent 50%, transparent);
+                  border-color: $burgundy;
+                }
+            }
+        }
+    }
+}
 label{
     &>span{
         font-weight:700;
@@ -585,7 +655,7 @@ label{
         }
     }
     &.tick-disabled{
-        color:$silver;
+        color:$davys-gray;
     }
 }
 .input-confirmed{
@@ -650,7 +720,7 @@ textarea{
     }
 }
 .close-tooltip{
-    color:$green-apple;
+    color:$text-gray;
     cursor:pointer;
     float:right;
     font-size:18px;
@@ -683,6 +753,17 @@ textarea{
         @extend .tooltip-inner;
     }
 }
+.tooltip-right{
+    width:300px;
+    @extend .tooltip-general;
+    &::before{
+        right:5%;
+        @extend .tooltip-arrow::before;
+    }
+    &>div{
+        @extend .tooltip-inner;
+    }
+}
 
 // Alerts
 // -----------------------------------------------------------------------------
@@ -707,11 +788,41 @@ textarea{
     @extend .alertbox;
     @extend .alertBox--error;
 }
+.alertbox-action {
+    @extend .alertbox-success;
+    .alert-title {
+        align-items:center;
+        display:flex;
+        justify-content:space-between;
+        h2 {
+            color:$text-gray;
+        }
+    }
+    .alert-message {
+        p {
+            margin-bottom:1rem;
+        }
+    }
+    .alert-actions {
+        display:flex;
+        justify-content:flex-end;
+        &>button {
+            @extend .subhead-14;
+            &:not(:last-child) {
+                margin-right:2rem;
+            }
+        }
+    }
+}
 .alertBox--info {
     background-color:$gainsboro;
     color:$text-gray;
     a {
         font-weight:700;
+        color: $teal-hover;
+    }
+    &:hover {
+        color: $teal;
     }
     svg {
         fill:$teal;
@@ -861,7 +972,7 @@ table{
 // Cards
 // -----------------------------------------------------------------------------
 .grid-card{
-    padding:0 10px 20px;
+    padding:0 10px;
     margin:auto;
     width:300px;
     @include card-dropshadow();
@@ -891,11 +1002,16 @@ table{
 }
 .buy-wide-card{
     align-items:center;
+    background-color: $color-white;
+    border-radius: 5px;
     display:flex;
     flex-direction:row;
     justify-content:space-between;
+    padding:.25rem .5rem;
     width:auto;
-    @extend .grid-card;
+    .result-card {
+        @extend .grid-card;
+    }
     .card-info{
         align-items:center;
         display:flex;
