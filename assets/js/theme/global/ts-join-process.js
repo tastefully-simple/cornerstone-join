@@ -422,9 +422,6 @@ class TSJoinProcess {
                     // Used for tracking in Google Analytics
                     const cashOptionValue =
                         userInfo.cashOption === 4 ? userInfo.cashOptionText : userInfo.cashOption;
-                    const $consultantCard = $('.consultant-card.selected');
-                    const $cid = $consultantCard.data('cid');
-                    TSCookie.setConsultantId($cid);
 
                     TSCookie.setTsCashOption(cashOptionValue);
 

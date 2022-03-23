@@ -1,15 +1,6 @@
 <script type="text/javascript">
     (function(w) {
         w.TSCookie = {
-            // Consultant ID
-            // Type: Str
-            setConsultantId: function(cid) {
-                // Remove trailing spaces
-                const newCid = cid ? cid.trim() : cid;
-
-                Cookies.set('cid', newCid);
-            },
-
             // Order Id
             getOrderId: function() {
                 return Cookies.get('joinOrderId');
