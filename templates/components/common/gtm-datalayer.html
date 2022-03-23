@@ -48,22 +48,10 @@ function getTsCashOption() {
     }
 }
 
-function getAffiliationCookie(cookieName) {
-    var value = `; ${document.cookie}`;
-    var parts = value.split(`; ${cookieName}=`);
-    if (parts.length === 2) {
-        return parts.pop().split(';').shift();
-    } else {
-        return null;
-    }
-}
-
 var tsCashOption = getTsCashOption();
-var consultantId = getAffiliationCookie('cid');
 
 window.dataLayer.push({
     'event' : 'join',
-    'dimension2': consultantId, // consultantId
     'dimension4' : true, // joinSession
     'dimension5': tsCashOption // spendDropdown
 });
