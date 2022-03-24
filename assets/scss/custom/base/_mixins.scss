@@ -252,7 +252,7 @@
 
 @mixin disabledField() {
 	label {
-		color: $COLOR_GRAY_50;
+		color: $davys-gray;
 	}
 
 	input[type=text], select, input[type=tel], input[type=date], input[type=email], input[type=password] {

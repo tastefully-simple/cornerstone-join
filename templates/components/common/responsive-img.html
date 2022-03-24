@@ -58,4 +58,5 @@ pick the best-sized image based on its own understanding of how it will render t
 {{else if default_image}}src="{{cdn default_image}}"{{/if}}
 class="{{#unless lazyload '==' 'disabled'}}lazyload{{/unless}}{{#if class}} {{class}}{{/if}}"
 {{#if lazyload '==' 'lazyload'}}loading="lazy"{{/if}}
+alt="{{#if alt}} {{alt}}{{/if}}"
 {{otherAttributes}} />

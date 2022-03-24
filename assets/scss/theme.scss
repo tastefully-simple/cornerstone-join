@@ -86,7 +86,7 @@
 
 @import "vendor/jstree/style";
 
-// Irish Titan's SCSS Files
+// Irish Titan's SCSS Files for Inheritance
 // -----------------------------------------------------------------------------
 @import "custom/theme/_colors";
 @import "custom/theme/_spacing";
@@ -94,9 +94,6 @@
 @import "custom/base/_breakpoints";
 @import "custom/base/_mixins";
 @import "custom/base/_pagination";
-@import "custom/layout/_switch";
-@import "custom/layout/_modal-overlay";
-@import "custom/layout/_personal-info";
 
 // Razoyo's Tastefully Simple SCSS Files
 // -----------------------------------------------------------------------------
@@ -108,3 +105,9 @@
 @import "custom/layout/_join-kit";
 @import "custom/layout/_consultant-card";
 @import "custom/layout/_join-confirmation";
+
+// Irish Titan's SCSS Files for Layout (Needs to inherit TST theme)
+// -----------------------------------------------------------------------------
+@import "custom/layout/_switch";
+@import "custom/layout/_modal-overlay";
+@import "custom/layout/_personal-info";
