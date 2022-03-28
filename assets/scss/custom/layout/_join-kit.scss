@@ -4,7 +4,7 @@
 
 @mixin kit-header {
     align-items: center;
-    background-color: teal;
+    background-color: $teal-hover;
     color: white;
     display: flex;
     flex-basis: 100%;
@@ -14,7 +14,7 @@
 
 // Progress bar
 .join-progress-bar {
-    background: teal;
+    background: $teal-hover;
     margin-top: -5rem;
     padding-bottom: 3rem;
     text-align: center;
@@ -73,7 +73,7 @@
 
 // Select a kit
 .kit-selector .kit-card {
-    border: 2px solid $shady-lady;
+    border: 2px solid $davys-gray;
     border-top: none;
     cursor: pointer;
     height: 520px;
@@ -100,7 +100,7 @@
     }
     .kit-card-header {
         @include kit-header;
-        background-color: $shady-lady;
+        background-color: $davys-gray;
         .fa-circle {
             font-size: 2rem;
             margin-right: 1rem;

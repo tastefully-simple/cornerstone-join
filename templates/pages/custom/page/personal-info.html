@@ -12,6 +12,7 @@
             image=image
             class="progress-bar"
             default_image=theme_settings.ts_progress_bar_2
+            alt="Progress bar icon"
             }}
         </div>
     </div>
@@ -31,7 +32,7 @@
                     </select>
                 </div>
                 <div id="preferredNameField" class="">
-                    <label for="preferredName" class="input-label">
+                    <label for="PreferredName" class="input-label">
                         <span>Preferred First Name</span>
                         <input type="text" id="PreferredName" name="PreferredName" value="" placeholder="Preferred name">
                     </label>
@@ -64,12 +65,12 @@
                     <label for="SSN" class="input-label">
                         <span>Social Security Number</span>
                         <input type="text" id="SSN" name="SSN" value="" placeholder="123-45-6789">
-                        <img src="{{cdn 'assets/img/secure-lock.png'}}">
+                        <img src="{{cdn 'assets/img/secure-lock.png'}}" alt="secure lock icon">
                     </label>
                     <p class="join__field--subtext">For authentication and tax purposes, we need your Social Security Number to get your business started.</p>
                 </div>
                 <div id="DOBField" class="">
-                    <label for="DOB" class="input-label">
+                    <label for="BirthDate" class="input-label">
                         <span>Date of Birth</span>
                         <input type="date" id="BirthDate" name="BirthDate" placeholder="mm-dd-yyyy" class="empty" max="9999-12-31">
                         <input type="hidden" id="Birthday" name="Birthday" value="">
@@ -113,7 +114,7 @@
                 </div>
                 <div id="termsCheckboxHiddenField" class="hidden">
                     <input type="checkbox" id="TermsOptIn" name="TermsOptIn" value="true">
-                    <label for="TermsCheckbox" class="join__form--checkbox-label">Terms &amp; Conditions opt-in</label>
+                    <label for="TermsOptIn" class="join__form--checkbox-label">Terms &amp; Conditions opt-in</label>
                 </div>
                 <div id="termsVersion" class="hidden">
                     <label for="TermsVersion" class="input-label">
@@ -227,39 +228,36 @@
                     </div>
                     <div>
                         <h4 class="textgray-text">Search by Consultant ID</h4>
-                        <label for="txtConsultantId" class="input-label">
+                        <label for="txtConsultantID" class="input-label">
                             <span>Consultant ID</span>
                             <input type="text" id="txtConsultantID" value="" class="short" name="consultantId">
                         </label>
                         <button id="btnConsIdSearch" class="button-secondary">search</button>
                     </div>
-                    <h4 class="teal-text">Select Your Sponsor</h4>
+                    <h4 class="tealhover-text">Select Your Sponsor</h4>
                     <div class="sponsorSearchData-wrapper">
                         <h1 class="hidden">Shopping With</h1>
                         <div id="sponsorSearchData">
                         </div>
                         <div id="divTsConsFound" style="display:none; padding-left:5px; padding-right:5px;">
-                            <br />
                             There is no consultant near you, but not to worry! Select Tastefully Simple as your sponsor and continue. 
                             We will contact you to find the best sponsor near you.
                         </div>
                     </div>
                     <div class="join__terms">
                         <h4 class="textgray-text">Independent Consultant Agreement</h4>
-                        <table style="width:100%; margin-bottom: 10px;">
-                            <tr>
-                                <td valign="middle" style="width:5%;"><input type="checkbox" id="TermsCheckboxVisible" name="TermsCheckboxVisible" value=""></td>
-                                <td>
-                                    <label for="TermsCheckboxVisible" style="font-size: 12px;">
-                                        I understand and accept the terms and conditions of the <a id="openTermsModal">Tastefully Simple independent consultant agreement</a>
-                                    </label>
-                                </td>
-                            </tr>
-                        </table>     
+                        <div class="join__terms-input">
+                            <input type="checkbox" id="TermsCheckboxVisible" name="TermsCheckboxVisible" value="">
+                            <div>
+                                <label for="TermsCheckboxVisible">
+                                    <span class="system-12">I understand and accept the terms and conditions of the</span>
+                                </label>
+                                <button id="openTermsModal" class="global-link">Tastefully Simple independent consultant agreement</button>
+                            </div>
+                        </div>
                     </div>
                     <button id="checkout" value="checkout" class="button-secondary-icon">checkout</button>
                 </form>
-                <br />
                 <div id="formErrorMessages"></div>
             </div>
         </div>

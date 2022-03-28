@@ -12,7 +12,7 @@
         align-items: top;
         min-height: 250px;
         margin-top: -5rem;
-        background-color: $COLOR_PRIMARY_100;
+        background-color: $teal-hover;
     }
 
     &--login .join__banner {
@@ -219,7 +219,7 @@
         .join__field--subtext {
             margin-left: $SPACING_1;
             margin-top: -1 * $SPACING_2;
-            color: $COLOR_GRAY_200;
+            color: $text-gray;
             font-size: 13px;
         }
 
@@ -301,6 +301,24 @@
 
         .heading--4 {
             text-align: center;
+        }
+        .join__terms-input {
+            align-items: center;
+            display: flex;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            input {
+                flex-basis: 30px;
+            }
+            label {
+                margin-bottom: 3px;
+                padding-left: 7px;
+            }
+            #openTermsModal {
+                color: $burgundy;
+                text-align: left;
+                text-decoration: underline;
+            }
         }
     }
     //styling for checkout button
