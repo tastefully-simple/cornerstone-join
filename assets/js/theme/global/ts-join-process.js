@@ -5,6 +5,7 @@ import TSCookie from '../common/ts-cookie';
 import ConsultantCard from '../common/consultant-card';
 
 const KIT_PAGE = '/';
+const KIT_SPECIAL_PAGE = '/join-special/';
 const PERSONAL_INFO_PAGE = '/tell-us-about-yourself/';
 const CONFIRMATION_PAGE = '/welcome';
 const CART_PAGE = '/cart.php';
@@ -27,6 +28,7 @@ class TSJoinProcess {
     init() {
         switch (document.location.pathname) {
             case KIT_PAGE:
+            case KIT_SPECIAL_PAGE:
                 this.renderKit();
                 break;
             case PERSONAL_INFO_PAGE:
