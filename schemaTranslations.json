@@ -873,6 +873,41 @@
     "uk": "GeoTrust SSL",
     "zh": "Geo信任SSL"
   },
+  "i18n.GoogleTagmanager": {
+    "default": "Google Tag Manager Settings",
+    "fr": "Google Tag Manager Settings",
+    "it": "Google Tag Manager Settings",
+    "uk": "Google Tag Manager Settings",
+    "zh": "Google Tag Manager Settings"
+  },
+  "i18n.GoogleTagmanagerCode": {
+    "default": "Container Code",
+    "fr": "Container Code",
+    "it": "Container Code",
+    "uk": "Container Code",
+    "zh": "Container Code"
+  },
+  "i18n.GoogleTagmanagerStatus": {
+    "default": "Status",
+    "fr": "Status",
+    "it": "Status",
+    "uk": "Status",
+    "zh": "Status"
+  },
+  "i18n.GoogleTagmanagerStatusEnabled": {
+    "default": "Enabled",
+    "fr": "Enabled",
+    "it": "Enabled",
+    "uk": "Enabled",
+    "zh": "Enabled"
+  },
+  "i18n.GoogleTagmanagerStatusDisabled": {
+    "default": "Disabled",
+    "fr": "Disabled",
+    "it": "Disabled",
+    "uk": "Disabled",
+    "zh": "Disabled"
+  },
   "i18n.IfYouvePurchasedAGeoTrust": {
     "default": "If you've purchased a GeoTrust SSL from BigCommerce, check your BigCommerce Account Dashboard for the correct Common Name to use here.",
     "fr": "Si vous avez acheté un SSL GeoTrust auprès de BigCommerce, consultez le tableau de bord de votre compte BigCommerce pour le nom commun correct à utiliser ici.",

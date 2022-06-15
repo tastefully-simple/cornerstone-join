@@ -968,6 +968,31 @@
           }
         ],
         "force_reload": true
+      },
+      {
+        "type": "heading",
+        "content": "i18n.GoogleTagmanager"
+      },
+      {
+        "type": "select",
+        "label": "i18n.GoogleTagmanagerStatus",
+        "id": "google_tagmanager_status",
+        "options": [
+          {
+            "value": "1",
+            "label": "i18n.GoogleTagmanagerStatusEnabled"
+          },
+          {
+            "value": "2",
+            "label": "i18n.GoogleTagmanagerStatusDisabled"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "label": "i18n.GoogleTagmanagerCode",
+        "force_reload": true,
+        "id": "google_tagmanager_code"
       }
     ]
   },

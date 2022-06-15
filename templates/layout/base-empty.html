@@ -42,6 +42,7 @@
         <script src="https://kit.fontawesome.com/2ac3125738.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        {{> components/common/gtm-noscript }}
         {{#block "page"}}{{/block}}
 
         <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
