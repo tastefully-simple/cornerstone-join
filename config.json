@@ -433,7 +433,9 @@
       "settings": {
         "ts_current_store_base_url": "https://join.tastefullysimple.com",
         "ts_join_api_base_url": "https://join.api.tastefullysimple.com",
-        "ts_tsapi_base_url": "https://tsapi.tastefullysimple.com"
+        "ts_tsapi_base_url": "https://tsapi.tastefullysimple.com",
+        "google_tagmanager_status": "1",
+        "google_tagmanager_code": "GTM-PD7HGB2"
       }
     }
   ]
