@@ -1,0 +1,15 @@
+<script>
+    function showPassword(seconds, fieldId) {
+        const passwordField = document.getElementById(fieldId);
+        const currentFieldType = passwordField.type;
+        if (currentFieldType === 'password') {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+        }
+
+        setTimeout(() => {
+            passwordField.type = currentFieldType;
+        }, 1000 * parseInt(seconds));
+    }
+</script>
