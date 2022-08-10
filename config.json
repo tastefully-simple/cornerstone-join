@@ -45,6 +45,8 @@
     "Firefox ESR"
   ],
   "settings": {
+    "google_tagmanager_status": "2",
+    "google_tagmanager_code": "",
     "ts_current_store_base_url": "https://tastefully-simple-inc-sandbox-4.mybigcommerce.com",
     "ts_join_api_base_url": "https://qa1-join.api.tastefullysimple.com",
     "ts_tsapi_base_url": "https://qa1-tsapi.tastefullysimple.com",
@@ -386,7 +388,10 @@
         ]
       },
       "images": {},
-      "settings": {}
+      "settings": {
+        "google_tagmanager_status": "2",
+        "google_tagmanager_code": ""
+      }
     },
     {
       "name": "Business-Sandbox",
@@ -409,7 +414,9 @@
       "settings": {
         "ts_current_store_base_url": "https://tastefully-simple-inc-sandbox-5.mybigcommerce.com",
         "ts_join_api_base_url": "https://stage-join.api.tastefullysimple.com",
-        "ts_tsapi_base_url": "https://stage-tsapi.tastefullysimple.com"
+        "ts_tsapi_base_url": "https://stage-tsapi.tastefullysimple.com",
+        "google_tagmanager_status": "1",
+        "google_tagmanager_code": "GTM-PD7HGB2"
       }
     },
     {
@@ -433,7 +440,9 @@
       "settings": {
         "ts_current_store_base_url": "https://join.tastefullysimple.com",
         "ts_join_api_base_url": "https://join.api.tastefullysimple.com",
-        "ts_tsapi_base_url": "https://tsapi.tastefullysimple.com"
+        "ts_tsapi_base_url": "https://tsapi.tastefullysimple.com",
+        "google_tagmanager_status": "1",
+        "google_tagmanager_code": "GTM-PD7HGB2"
       }
     }
   ]

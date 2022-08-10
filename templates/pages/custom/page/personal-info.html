@@ -64,9 +64,10 @@
                 <div id="SSNField" class="">
                     <label for="SSN" class="input-label">
                         <span>Social Security Number</span>
-                        <input type="text" id="SSN" name="SSN" value="" placeholder="123-45-6789">
+                        <input type="password" id="SSN" name="SSN" value="" placeholder="123-45-6789">
                         <img src="{{cdn 'assets/img/secure-lock.png'}}" alt="secure lock icon">
                     </label>
+                    <p><input type="button" id="ShowSSNButton" onclick="javascript:showPassword(2, 'SSN');" value="Show SSN"></p>
                     <p class="join__field--subtext">For authentication and tax purposes, we need your Social Security Number to get your business started.</p>
                 </div>
                 <div id="DOBField" class="">
@@ -240,7 +241,7 @@
                         <div id="sponsorSearchData">
                         </div>
                         <div id="divTsConsFound" style="display:none; padding-left:5px; padding-right:5px;">
-                            There is no consultant near you, but not to worry! Select Tastefully Simple as your sponsor and continue. 
+                            There is no consultant near you, but not to worry! Select Tastefully Simple as your sponsor and continue.
                             We will contact you to find the best sponsor near you.
                         </div>
                     </div>
@@ -264,6 +265,7 @@
     </div>
     <div id="affiliatediv" data-affiliateid="{0}" data-fname="" data-lname="" ></div>
     {{> components/common/join-agreement-modal}}
+    {{> components/common/scripts}}
 </main>
 
 {{/partial}}
