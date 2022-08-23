@@ -946,5 +946,8 @@
         "price_min_not_entered": "Min. price is required.",
         "price_max_not_entered": "Max. price is required.",
         "price_invalid_value": "Input must be greater than 0."
+    },
+    "order_confirmation": {
+        "continue_button": "Continue to your consultant welcome page"
     }
 }
