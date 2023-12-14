@@ -6,14 +6,17 @@ on:
    types: [closed]
    branches:
       dev
-
+      
+# Allows you to run this workflow manually from the Actions tab - in that environment
+workflow_dispatch:
+  
 jobs:
   build:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node: [12.x]
+        node: [16.x]
 
     steps:
     - name: Checkout code
