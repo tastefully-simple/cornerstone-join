@@ -33,7 +33,7 @@ jobs:
           ${{ runner.os }}-node-
     - name: Install Stencil CLI Dependency
       run: npm install -g @bigcommerce/stencil-cli@3.10.1
-    # must remove the 3.10.1 specific version at some point.
+    # must remove the 3.10.1 specific version at some point
 
     - name: Install Dependencies
       run: npm ci
