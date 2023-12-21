@@ -1,5 +1,5 @@
 name: Publish Production Join Store
-# This workflow is triggered on release creations on the main branch only.
+# This workflow is triggered on release creations on the mock branch only.
 on:
   release:
     types:
@@ -32,8 +32,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
     - name: Install Stencil CLI Dependency
-      run: npm install -g @bigcommerce/stencil-cli@3.10.1
-    # must remove the 3.10.1 specific version at some point.
+      run: npm install -g @bigcommerce/stencil-cli
 
     - name: Install Dependencies
       run: npm ci
